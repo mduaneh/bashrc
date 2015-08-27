@@ -1,0 +1,3 @@
+echo "Loading profile.local"
+# Source DM information
+source ~/.dm/dm.bashrc
