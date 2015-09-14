@@ -12,6 +12,9 @@
 if [ -f "$HOME/.bashrc" ] ; then
   source $HOME/.bashrc
 fi
+if [ -d "/pkg/qct/software/lsf" ] ; then
+  pathprepend /pkg/qct/software/lsf
+fi
 
 if [ -d "$HOME/bin" ] ; then
   pathprepend $HOME/bin
