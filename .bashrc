@@ -29,14 +29,18 @@ if [ -f "/etc/bashrc" ] ; then
 fi
 pathprepend () {
         pathremove $1 $2
-        local PATHVARIABLE=${2:-PATH}
-        export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
+	if [ -d $1 ] ; then
+	        local PATHVARIABLE=${2:-PATH}
+	        export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
+	fi
 }
 
 pathappend () {
         pathremove $1 $2
-        local PATHVARIABLE=${2:-PATH}
-        export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
+	if [ -d $1 ] ; then
+        	local PATHVARIABLE=${2:-PATH}
+        	export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
+	fi
 }
 
 
