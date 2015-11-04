@@ -8,12 +8,19 @@
 # Personal aliases and functions should go in ~/.bashrc.  System wide
 # environment variables and startup programs are in /etc/profile.
 # System wide aliases and functions are in /etc/bashrc.
-
+export DRM_PROJECT=`/pkg/icetools/bin/ptagger -f 33193  -t 00 -g wire`
 if [ -f "$HOME/.bashrc" ] ; then
   source $HOME/.bashrc
 fi
+
+# If you source a SITE profile then you will get set to that cluster
+#if [ -f "/pkg/qct/software/platform/lsf/9.1/GBC/conf/profile.lsf" ] ; then
+#  source /pkg/qct/software/platform/lsf/9.1/GBC/conf/profile.lsf
+#fi
+
 pathprepend /pkg/qct/software/lsf
 pathprepend /pkg/ice/sysadmin/lsf/bin
+#pathprepend /usr/local/sbin
 
 # I'm specifically looking for the executable here because of enclaves
 if [ -e "/pkg/qct/software/gnu/tmux/1.9a/bin/tmux" ] ; then
@@ -23,9 +30,14 @@ fi
 pathprepend $HOME/bin
 pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
 pathprepend  /pkg/hwtools/bin       # For things like lmstat
+pathprepend  /usr/atria/bin         # For cleartool
 # Having . in the PATH is dangerous
 #if [ $EUID -gt 99 ]; then
 #  pathappend .
 #fi
+# Setup my aliases
+if [ -f "$HOME/.bashrc_aliases" ] ; then
+  source $HOME/.bashrc_aliases
+fi
 
 # End ~/.bash_profile
