@@ -17,6 +17,10 @@ fi
 #if [ -f "/pkg/qct/software/platform/lsf/9.1/GBC/conf/profile.lsf" ] ; then
 #  source /pkg/qct/software/platform/lsf/9.1/GBC/conf/profile.lsf
 #fi
+# Added above per Jay Lavine to get manpath added, but this causes issues when logged into
+#  other lsf cluster login machines that share the same homedir.  Instead just add to the 
+#  MANPATH
+pathprepend /pkg/qct/software/platform/lsf/9.1/GBC/9.1/man MANPATH
 
 pathprepend /pkg/qct/software/lsf
 pathprepend /pkg/ice/sysadmin/lsf/bin
@@ -28,9 +32,14 @@ if [ -e "/pkg/qct/software/gnu/tmux/1.9a/bin/tmux" ] ; then
 fi
 
 pathprepend $HOME/bin
+pathprepend  /prj/qct/wire/bin
 pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
+pathprepend  /pkg/sysadmin/bin      # For things like mdbrotate
 pathprepend  /pkg/hwtools/bin       # For things like lmstat
+pathprepend  /opt/quest/bin         # For things like klist/kinit
+pathprepend  /pkg/afs/bin           # For asudo
 pathprepend  /usr/atria/bin         # For cleartool
+pathprepend  /pkg/icetools/bin      # For stuff like quota.eng
 # Having . in the PATH is dangerous
 #if [ $EUID -gt 99 ]; then
 #  pathappend .

@@ -1,3 +1,7 @@
 echo "Setting aliases"
-alias ll='ls -l'
+alias ll='ls -hl'
 alias ct='cleartool'
+alias checkSpace='du -ch --max-depth=1 --exclude=.snapshot | sort -h -r '
+alias checkHome='checkSpace; /pkg/icetools/bin/quota.eng -u mhale -d /usr2/mhale'
+alias aklog='/pkg/afs/tools/aklog/aklog.sled11sp3'
+alias cdgit='cd /usr2/mhale/projectPaths/mhale/git'
