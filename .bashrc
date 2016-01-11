@@ -42,6 +42,12 @@ pathappend () {
         	export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
 	fi
 }
-
+LAST_HISTORY_WRITE=$SECONDS
+function refresh_history () {
+	if [ $(($SECONDS - $LAST_HISTORY_WRITE)) -gt 60 ]; then
+		history -a && history -c && history -r
+		LAST_HISTORY_WRITE=$SECONDS
+	fi
+}
 
 # End ~/.bashrc
