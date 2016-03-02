@@ -43,6 +43,7 @@ if [[ $OSNAME == "Darwin" ]]; then
 	export CC=clang
 	export GOPATH=~/git/go
 	pathprepend ~/bin
+	pathprepend /usr/local/sbin
 	pathprepend /usr/local/bin
 	pathprepend /usr/local/opt/ruby/bin
 	pathprepend ${GOPATH}/bin
