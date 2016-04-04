@@ -32,6 +32,7 @@ if [ -e "/pkg/qct/software/gnu/tmux/1.9a/bin/tmux" ] ; then
 fi
 
 pathprepend $HOME/bin
+pathprepend /usr/sbin               # For things like traceroute
 pathprepend  /prj/qct/wire/bin
 pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
 pathprepend  /pkg/sysadmin/bin      # For things like mdbrotate
