@@ -43,5 +43,12 @@ pathappend () {
 	fi
 }
 
+settitle (){
+	local cluster=`lsid | grep 'My cluster' | awk '{print $NF}'`
+	local    host=$(hostname)
+	local name=${1:-"${host}:${cluster}"}
+	tmux rename-window  "${name}"
+	echo -n -e "\033]0;${name}\007"
+}
 
 # End ~/.bashrc
