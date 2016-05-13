@@ -53,3 +53,4 @@ fi
 
 # FIX LESS espeically with git output
 export LESS="${LESS} -R"
+export TERM=screen-256color-it
