@@ -48,7 +48,7 @@ settitle (){
 	local    host=$(hostname)
 	local name=${1:-"${host}:${cluster}"}
 	tmux rename-window  "${name}"
-	echo -n -e "\033]0;${name}\007"
+	# No longer needed with iTerm2 3.0.1 echo -n -e "\033]0;${name}\007"
 }
 
 # End ~/.bashrc
