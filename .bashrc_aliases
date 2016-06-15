@@ -1,14 +1,18 @@
 echo "Setting aliases"
 # Common Aliases
-alias ll='ls -hl'
+alias ll='ls -rthl'
 alias perlsh='perl -d -e "42;"'
+alias rcd='cd `pwd -P`'
+alias ghist='history | grep '
+
 if [[ $OSNAME == "Linux" ]]; then
 	alias ct='cleartool'
 	alias checkSpace='du -ch --max-depth=1 --exclude=.snapshot | sort -h -r '
 	alias checkHome='checkSpace; /pkg/icetools/bin/quota.eng -u mhale -d /usr2/mhale'
 	alias aklog='/pkg/afs/tools/aklog/aklog.sled11sp3'
 	alias cdgit='cd ~/projectPaths/mhale/git'
-	alias rcd='cd `pwd -P`'
+	alias become='env TERM=screen-256color sudo su - -s/bin/bash '
+	alias bjobsnc='env LSFBINARY_NOCACHE=1 bjobs'
 else
 	alias cdgit='cd ~/Documents/git'
 	alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;killall Finder /System/Library/CoreServices/Finder.app'
