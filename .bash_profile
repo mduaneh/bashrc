@@ -53,6 +53,7 @@ if [[ $OSNAME == "Darwin" ]]; then
 	export HOMEBREW_GITHUB_API_TOKEN=86d1eff6f2645f2717c3b98635194b6e5e883ed0
 	export HISTCONTROL=ignoreboth
 	export HISTSIZE=5000
+	export PROMPT_COMMAND='echo -ne "\033]0;$(basename ${PWD}): ${PWD}\007"'
 fi 
 # Setup my aliases
 if [ -e "$HOME/.bashrc_aliases" ] ; then
