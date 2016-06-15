@@ -1,5 +1,5 @@
 echo "Setting aliases"
-alias ll='ls -hl'
+alias ll='ls -rthl'
 alias ct='cleartool'
 alias checkSpace='du -ch --max-depth=1 --exclude=.snapshot | sort -h -r '
 alias checkHome='checkSpace; /pkg/icetools/bin/quota.eng -u mhale -d /usr2/mhale'
