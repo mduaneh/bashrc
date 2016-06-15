@@ -33,7 +33,7 @@ fi
 
 pathprepend $HOME/bin
 pathprepend /usr/sbin               # For things like traceroute
-pathprepend  /prj/qct/wire/bin
+pathappend  /prj/qct/wire/bin
 pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
 pathprepend  /pkg/sysadmin/bin      # For things like mdbrotate
 pathprepend  /pkg/hwtools/bin       # For things like lmstat
