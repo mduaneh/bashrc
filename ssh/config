@@ -1,0 +1,11 @@
+ConnectTimeout 5
+ForwardX11 no
+UserKnownHostsFile /dev/null
+LogLevel ERROR
+StrictHostKeyChecking=no
+# Use Jump->Bastion to get to hosts in ECDC:
+Host encnaa-admin1
+    ProxyCommand ssh -W %h:%p jumprtp1
+Host vl-mhale-ecdca
+    ProxyCommand ssh -W %h:%p encnaa-admin1
+LogLevel Error

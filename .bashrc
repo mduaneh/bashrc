@@ -42,8 +42,17 @@ pathappend () {
         	export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
 	fi
 }
-settitle (){
-        local    host=$(hostname)
+
+LAST_HISTORY_WRITE=$SECONDS
+function refresh_history () {
+	if [ $(($SECONDS - $LAST_HISTORY_WRITE)) -gt 60 ]; then
+		history -a && history -c && history -r
+		LAST_HISTORY_WRITE=$SECONDS
+	fi
+}
+
+settitle () {
+	local    host=$(hostname)
 	local    name=$host
 	if [[ $OSNAME != "Darwin" ]]; 
 	then
@@ -52,14 +61,6 @@ settitle (){
         	tmux rename-window  "${name}"
 	fi
         echo -n -e "\033]0;${name}\007"
-}
-
-LAST_HISTORY_WRITE=$SECONDS
-function refresh_history () {
-	if [ $(($SECONDS - $LAST_HISTORY_WRITE)) -gt 60 ]; then
-		history -a && history -c && history -r
-		LAST_HISTORY_WRITE=$SECONDS
-	fi
 }
 
 # End ~/.bashrc

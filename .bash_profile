@@ -60,3 +60,6 @@ if [ -e "$HOME/.bashrc_aliases" ] ; then
 fi
 	
 # End ~/.bash_profile
+
+# FIX LESS espeically with git output
+export LESS="${LESS} -R"
