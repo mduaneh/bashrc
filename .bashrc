@@ -53,13 +53,12 @@ function refresh_history () {
 
 settitle () {
 	local    host=$(hostname)
+	local    name=${1:-"${host}"}
 	if [[ $OSNAME -eq "Darwin" ]]; 
 	then
-		local    name=$host
         	echo -n -e "\033]0;${name}\007"
 	else
         	local cluster=`lsid | grep 'My cluster' | awk '{print $NF}'`||`echo -n ""`
-		local name=${1:-"${host}:${cluster}"}
         	name=${1:-"${host}:${cluster}"}
         	tmux rename-window  "${name}"
 	fi
