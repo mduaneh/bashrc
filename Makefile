@@ -11,6 +11,14 @@ echo:
 
 setup: ${TARGETS}
 
+git-prompt.sh:
+	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/$@
+	chmod a+x $@
+
+git-completion.bash:
+	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/$@
+	chmod a+x $@
+
 
 .PHONY:  echo setup
 .SILENT: echo

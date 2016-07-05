@@ -63,5 +63,10 @@ settitle () {
         	tmux rename-window  "${name}"
 	fi
 }
-
+if [ -f "~/bashrc/git-completion.bash" ] ; then
+   source ~/bashrc/git-completion.bash
+fi
+if [ -f "~/bashrc/git-prompt.sh" ] ; then
+   source ~/bashrc/git-prompt.sh
+fi
 # End ~/.bashrc
