@@ -1,4 +1,4 @@
-SOURCES:=.bash_logout .bash_profile .bashrc .profile .profile.local .tmux.conf
+SOURCES:=.bash_logout .bash_profile .bashrc .profile .profile.local .tmux.conf .bashrc_aliases
 TARGETS:=$(addprefix ~/,${SOURCES})
 
 echo:
