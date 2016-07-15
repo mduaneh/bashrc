@@ -50,11 +50,10 @@ function refresh_history () {
 		LAST_HISTORY_WRITE=$SECONDS
 	fi
 }
-
 settitle () {
 	local    host=$(hostname)
 	local    name=${1:-"${host}"}
-	if [[ $OSNAME -eq "Darwin" ]]; 
+	if [[ "$OSNAME" == "Darwin" ]]; 
 	then
         	echo -n -e "\033]0;${name}\007"
 	else
