@@ -1,7 +1,7 @@
 # Begin ~/.bashrc
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
-
+echo "Sourcing ~/.bashrc"
 # Personal aliases and functions.
 
 # Personal environment variables and startup programs should go in
@@ -24,7 +24,7 @@ pathremove () {
 }
 
 
-if [ -f "/etc/bashrc" ] ; then
+if [ -f /etc/bashrc ] ; then
   source /etc/bashrc
 fi
 pathprepend () {
@@ -62,10 +62,10 @@ settitle () {
         	tmux rename-window  "${name}"
 	fi
 }
-if [ -f "~/bashrc/git-completion.bash" ] ; then
+if [ -f ~/bashrc/git-completion.bash ] ; then
    source ~/bashrc/git-completion.bash
 fi
-if [ -f "~/bashrc/git-prompt.sh" ] ; then
+if [ -f ~/bashrc/git-prompt.sh ] ; then
    source ~/bashrc/git-prompt.sh
 fi
 # End ~/.bashrc
