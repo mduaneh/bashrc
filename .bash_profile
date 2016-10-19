@@ -15,8 +15,8 @@ fi
 OSNAME=`uname`
 export HISTSIZE=5000
 export HISTCONTROL=ignoredups
-if [[ $OSNAME == "Linux" ]]; then
-	echo "Running Linux Setup"
+if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
+	echo "Running $OSNAME Setup"
 	pathprepend /pkg/qct/software/lsf
 	pathprepend /pkg/ice/sysadmin/lsf/bin
 	# This allows the LSF man pages to get added 

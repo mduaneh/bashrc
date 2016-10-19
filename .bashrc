@@ -62,10 +62,14 @@ settitle () {
         	tmux rename-window  "${name}"
 	fi
 }
-if [ -f ~/bashrc/git-completion.bash ] ; then
-   source ~/bashrc/git-completion.bash
+OSNAME=`uname`
+if [ $OSNAME != "SunOS" ] ; then
+	if [ -f ~/bashrc/git-completion.bash ] ; then
+	   source ~/bashrc/git-completion.bash
+	fi
+	if [ -f ~/bashrc/git-prompt.sh ] ; then
+	   source ~/bashrc/git-prompt.sh
+	fi
 fi
-if [ -f ~/bashrc/git-prompt.sh ] ; then
-   source ~/bashrc/git-prompt.sh
-fi
+unset OSNAME
 # End ~/.bashrc
