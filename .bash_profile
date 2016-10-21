@@ -2,7 +2,7 @@
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
 # updated by Bruce Dubbs <bdubbs@linuxfromscratch.org>
-#echo "Sourcing .bash_profile"
+[[ $- == *i* ]] && echo "Sourcing .bash_profile"
 
 # Personal environment variables and startup programs.
 

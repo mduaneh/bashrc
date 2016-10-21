@@ -1,4 +1,4 @@
-echo "Setting aliases"
+debug "Setting aliases"
 # Common Aliases
 alias ll='ls -rthl'
 alias perlsh='perl -d -e "42;"'
