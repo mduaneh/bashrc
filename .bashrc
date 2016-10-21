@@ -1,7 +1,12 @@
 # Begin ~/.bashrc
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
-echo "Sourcing ~/.bashrc"
+debug () {
+	# If the shell is interactive then allow echos to debug.
+	# This is needed so scp will work
+	[[ $- == *i* ]] && echo $@
+}
+debug "Sourcing ~/.bashrc"
 # Personal aliases and functions.
 
 # Personal environment variables and startup programs should go in
