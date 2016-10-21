@@ -2,26 +2,31 @@
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
 # updated by Bruce Dubbs <bdubbs@linuxfromscratch.org>
-echo "Sourcing .bash_profile"
+#echo "Sourcing .bash_profile"
 
 # Personal environment variables and startup programs.
 
 # Personal aliases and functions should go in ~/.bashrc.  System wide
 # environment variables and startup programs are in /etc/profile.
 # System wide aliases and functions are in /etc/bashrc.
-if [ -f "$HOME/.bashrc" ] ; then
+if [ -f $HOME/.bashrc ] ; then
   source $HOME/.bashrc
 fi
 OSNAME=`uname`
 export HISTSIZE=5000
-export HISTCONTROL=ignoreboth
-if [[ $OSNAME == "Linux" ]]; then
-	echo "Running Linux Setup"
+export HISTCONTROL=ignoredups
+if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
+	echo "Running $OSNAME Setup"
 	pathprepend /pkg/qct/software/lsf
 	pathprepend /pkg/ice/sysadmin/lsf/bin
+	# This allows the LSF man pages to get added 
+        if [ -e "/pkg/ice/sysadmin/lsf/bin/lsfconf" ]; then
+             eval `/pkg/ice/sysadmin/lsf/bin/lsfconf | grep LSF_MANDIR`
+             pathappend      ${LSF_MANDIR} MANPATH
+        fi
 
 	# I'm specifically looking for the executable here because of enclaves
-	if [ -e "/pkg/qct/software/gnu/tmux/1.9a/bin/tmux" ] ; then
+	if [ -e /pkg/qct/software/gnu/tmux/1.9a/bin/tmux ] ; then
 	  	pathprepend  /pkg/qct/software/gnu/tmux/1.9a/bin/
 	fi
 	
@@ -44,6 +49,8 @@ if [[ $OSNAME == "Linux" ]]; then
 	# Last thing on the path
 	pathappend  /prj/qct/wire/bin
 	export TERM=screen-256color-it
+	export LSF_JOB_TAG=`/pkg/icetools/bin/ptagger -f 33193 -t 00 -g wire`
+	export DRM_PROJECT=$LSF_JOB_TAG
 	# Having . in the PATH is dangerous
 	#if [ $EUID -gt 99 ]; then
 	#  pathappend .
@@ -63,8 +70,6 @@ if [[ $OSNAME == "Darwin" ]]; then
 	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java"
 	export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 	export HOMEBREW_GITHUB_API_TOKEN=86d1eff6f2645f2717c3b98635194b6e5e883ed0
-	export HISTCONTROL=ignoreboth
-	export HISTSIZE=5000
 	# COMMENTED OUT# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 	# OLD# export PROMPT_COMMAND='echo -ne "\033]0;$(basename ${PWD}): ${PWD}\007"'
 	export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'

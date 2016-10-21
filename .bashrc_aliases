@@ -5,7 +5,7 @@ alias perlsh='perl -d -e "42;"'
 alias rcd='cd `pwd -P`'
 alias ghist='history | grep '
 
-if [[ $OSNAME == "Linux" ]]; then
+if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias ct='cleartool'
 	alias checkSpace='du -ch --max-depth=1 --exclude=.snapshot | sort -h -r '
 	alias checkHome='checkSpace; /pkg/icetools/bin/quota.eng -u mhale -d /usr2/mhale'
