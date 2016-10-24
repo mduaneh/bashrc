@@ -10,6 +10,8 @@ echo:
 	
 
 setup: ${TARGETS}
+	mkdir -p ~/.terminfo/s
+	ln -s -T -f ${PWD}/screen-256color-it ~/.terminfo/s/screen-256color-it
 
 git-prompt.sh:
 	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/$@
