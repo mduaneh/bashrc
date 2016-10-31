@@ -12,10 +12,6 @@
 if [ -f $HOME/.bashrc ] ; then
   source $HOME/.bashrc
 fi
-if [ -f $HOME/bashrc/gpg-setup.sh ] ; then
-  source $HOME/bashrc/gpg-setup.sh
-  gpg_activate
-fi
 OSNAME=`uname`
 export HISTSIZE=5000
 export HISTCONTROL=ignoredups

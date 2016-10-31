@@ -7,6 +7,10 @@ debug () {
 	[[ $- == *i* ]] && echo $@
 }
 debug "Sourcing ~/.bashrc"
+if [ -f $HOME/bashrc/gpg-functions.sh ] ; then
+  source $HOME/bashrc/gpg-functions.sh
+  gpg_activate
+fi
 # Personal aliases and functions.
 
 # Personal environment variables and startup programs should go in
