@@ -24,10 +24,14 @@ function gpg_check_agent () {
 }
 function gpg_start_agent () {
 	local result
+	local umaskSet=`umask`
+	umask 0077
+	chmod 0700 ~/.gnupg
 	gpg-agent --daemon --enable-ssh-support           --write-env-file "${HOME}/.gpg-agent-info" &>/dev/null 
-	debug "Starting GPG Agent"
 	result=$?
+	debug "Starting GPG Agent"
 	gpg_setup
+	umask $umaskSet
 	return  $result
 }
 
