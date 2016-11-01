@@ -1,5 +1,6 @@
 debug "Setting aliases"
 # Common Aliases
+alias mx='chmod a+x'
 alias ll='ls -rthl'
 alias perlsh='perl -d -e "42;"'
 alias rcd='cd `pwd -P`'
