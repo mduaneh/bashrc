@@ -1,0 +1,69 @@
+= BASH Startup Files
+Michael D. Hale <mhale@qualcomm.com>
+:toc:
+:imagesdir: ./images
+:linkattrs:
+:icons: font
+
+== Interactive login Shell
+
+* Defined as interactive login shell or with --login.
+** See https://www.gnu.org/software/bash/manual/html_node/Interactive-Shells.html#Interactive-Shells[Interactive Shells]
+
+["graphviz", "BashStartLogin"]
+----
+digraph login {
+loginShell[shape="circle", label="login\nshell"]
+exit[shape="circle"]
+shell[shape="none"]
+etc_profile[shape=box,label="/etc/profile"];
+profile[shape=record, label="<f0> ~/.bash_profile|<f1> ~/.bash_login|<f2> ~/.profile"];
+logout[shape=box, label="~/.bash_logout"]
+	 loginShell -> etc_profile
+        etc_profile -> profile
+	profile -> shell
+	shell -> exit
+	exit -> logout
+
+
+	 }
+----
+== Interactive non-login Shell
+
+* Defined as interactive non-login shell or without --login.
+** See https://www.gnu.org/software/bash/manual/html_node/Interactive-Shells.html#Interactive-Shells[Interactive Shells]
+
+["graphviz", "BashStartNonLogin"]
+----
+digraph nonlogin {
+loginShell[shape="circle", label="non-\nlogin\nshell"]
+bashrc[shape="box",label="~/.bashrc"]
+exit[shape="circle"]
+shell[shape="none"]
+        loginShell -> bashrc
+	bashrc -> shell
+	shell -> exit
+	 }
+----
+
+== Remote Shell Daemon (ssh)
+
+* Bash attempts to determine when it is being run with its standard input connected to a network connection, as when executed by the remote shell daemon, usually rshd, or the secure shell daemon sshd. 
+
+["graphviz", "BashStartupSSH"]
+----
+digraph ssh {
+sshShell[shape="circle", label="ssh\nshell"]
+bashrc[shape="box",label="~/.bashrc"]
+exit[shape="circle"]
+shell[shape="none"]
+        sshShell -> bashrc
+	bashrc -> shell
+	shell -> exit
+	 }
+----
+
+[bibliography]
+== Bibliography
+
+* https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html, 11-3-2016.
