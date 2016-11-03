@@ -1,3 +1,4 @@
+debug "Sourcing gpg-functions"
 export GPG_TTY=$(tty)
 function gpg_setup_env () {
 	debug "Configuring GPG Agent Environment"
@@ -30,7 +31,7 @@ function gpg_start_agent () {
 	gpg-agent --daemon --enable-ssh-support           --write-env-file "${HOME}/.gpg-agent-info" &>/dev/null 
 	result=$?
 	debug "Starting GPG Agent"
-	gpg_setup
+	gpg_setup_env
 	umask $umaskSet
 	return  $result
 }
@@ -46,3 +47,4 @@ function gpg_restart () {
 	gpg_activate
 }
 
+debug "End of gpg-functions"

@@ -1,4 +1,5 @@
 # bash/zsh completion support for core Git.
+debug "Sourcing git-completion"
 #
 # Copyright (C) 2006,2007 Shawn O. Pearce <spearce@spearce.org>
 # Conceptually based on gitcompletion (http://gitweb.hawaga.org.uk/).
@@ -2871,3 +2872,4 @@ __git_complete gitk __gitk_main
 if [ Cygwin = "$(uname -o 2>/dev/null)" ]; then
 __git_complete git.exe __git_main
 fi
+debug "End of git-completion"
