@@ -530,3 +530,4 @@ __git_ps1 ()
 
 	return $exit
 }
+debug "End of git-prompt"

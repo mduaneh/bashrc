@@ -1,22 +1,23 @@
 # Begin ~/.bash_profile
+export DEBUG=${DEBUG:-"n"}
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
 # updated by Bruce Dubbs <bdubbs@linuxfromscratch.org>
-[[ $- == *i* ]] && echo "Sourcing .bash_profile"
+[[ $- == *i* ]] && [[ $DEBUG == *y* ]] && echo "Sourcing .bash_profile"
 
 # Personal environment variables and startup programs.
 
 # Personal aliases and functions should go in ~/.bashrc.  System wide
 # environment variables and startup programs are in /etc/profile.
 # System wide aliases and functions are in /etc/bashrc.
-if [ -f $HOME/.bashrc ] ; then
-  source $HOME/.bashrc
+if [ -f $HOME/bashrc/bashrc ] ; then
+  source $HOME/bashrc/bashrc
 fi
 OSNAME=`uname`
 export HISTSIZE=5000
 export HISTCONTROL=ignoredups
 if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
-	echo "Running $OSNAME Setup"
+	debug "Running $OSNAME Setup"
 	pathprepend /pkg/qct/software/lsf
 	pathprepend /pkg/ice/sysadmin/lsf/bin
 	# This allows the LSF man pages to get added 
@@ -57,7 +58,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	#fi
 fi
 if [[ $OSNAME == "Darwin" ]]; then
-	echo "Running MacOSX Setup"
+	debug "Running MacOSX Setup"
 	export CC=clang
 	export GOPATH=~/git/go
 	pathprepend ~/bin
@@ -87,3 +88,4 @@ fi
 
 # FIX LESS espeically with git output
 export LESS="${LESS} -R"
+[[ $- == *i* ]] && [[ $DEBUG == *y* ]] && echo "End of  .bash_profile"

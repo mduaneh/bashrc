@@ -4,9 +4,9 @@
 debug () {
 	# If the shell is interactive then allow echos to debug.
 	# This is needed so scp will work
-	[[ $- == *i* ]] && echo $@
+	[[ $- == *i* ]] && [[ $DEBUG == *y* ]] && echo $@
 }
-debug "Sourcing ~/.bashrc"
+debug "Sourcing bashrc/bashrc"
 if [ -f $HOME/bashrc/gpg-functions.sh ] ; then
   source $HOME/bashrc/gpg-functions.sh
   gpg_activate
@@ -81,4 +81,6 @@ if [ $OSNAME != "SunOS" ] ; then
 	fi
 fi
 unset OSNAME
+debug  "End of ~/bashrc/bashrc"
+
 # End ~/.bashrc

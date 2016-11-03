@@ -1,3 +1,4 @@
+debug "Sourcing gpg-functions"
 export GPG_TTY=$(tty)
 function gpg_setup_env () {
 	debug "Configuring GPG Agent Environment"
@@ -46,3 +47,4 @@ function gpg_restart () {
 	gpg_activate
 }
 
+debug "End of gpg-functions"
