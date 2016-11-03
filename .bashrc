@@ -8,7 +8,7 @@ debug () {
 }
 debug "Sourcing bashrc/bashrc"
 hostname=`hostname`
-if [[ hostname == vl-mhale-gbc ]] || [[ hostname == mhale-mac ]]; then 
+if [[ $hostname == vl-mhale-gbc ]] || [[ $hostname == mhale-mac ]]; then 
 	if [ -f $HOME/bashrc/gpg-functions.sh ] ; then
 	  source $HOME/bashrc/gpg-functions.sh
 	  gpg_activate
