@@ -80,8 +80,8 @@ pathprepend $HOME/bin
 
 # Having . in the PATH is dangerous
 # Setup my aliases
-if [ -e "$HOME/.bashrc_aliases" ] ; then
- 	source $HOME/.bashrc_aliases
+if [ -e "$HOME/bashrc/.bashrc_aliases" ] ; then
+ 	source $HOME/bashrc/.bashrc_aliases
 fi
 	
 # End ~/.bash_profile
