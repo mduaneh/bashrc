@@ -1,0 +1,90 @@
+= Setup GPG encrypted password files and how to show them
+Michael D. Hale <mhale@qualcomm.com>
+:toc:
+:imagesdir: ./images
+:linkattrs:
+:icons: font
+
+== Prerequisites
+
+. GPG Installed on the local workstation
+** To check:  which gpg
+** On Suse:  sudo zypper install gpg2
+. GPG Certificate, that is passphrase protected
+** See:  https://www.gnupg.org/gph/en/manual/c14.html
+. Ensure your keys are at least protected with simple unix permissions
+** But if you use my functions this will be taken care of for you.
+
+== Install "pass"
+
+* pass is a simple script that adds some ease of use around storing passwords.
+** https://www.passwordstore.org
+*** Download and install locally on your machine, or somewhere you can access in your path
+* Follow the Examples at:  https://git.zx2c4.com/password-store/about/#EXTENDED%20GIT%20EXAMPLE
+* I had to cd into ~/.password-store and manually issue git commands for them to work.
+
+== Trust your GPG Key
+
+gpg --edit-key <name of key>::
+Trust Fully
+More info here: https://www.gnupg.org/gph/en/manual/x334.html
+
+* This allows you to store passwords for any given domain/setting.  Otherwise you will run into issues.
+
+== Setup GPG-Agent
+
+* Create ~/.gnupg/gpg-agent.conf
+* We need to override the default setting for caching certificates
+** Linux:
+....
+include::../gpg-agent.conf[]
+....
+** MacOS:
+....
+include::../gpg-agent.Darwin.conf[]
+....
+
+== Add initialization code to your bash setup files
+
+* Create a functions file to source.
+
+.Recommend ~/bashrc/gpg-functions.sh
+....
+include::../gpg-functions.sh[]
+....
+
+* Source and execute
+
+....
+hostname=`hostname`
+if [[ $hostname == vl-mhale-gbc ]] || [[ $hostname == mhale-mac ]]; then
+        if [ -f $HOME/bashrc/gpg-functions.sh ] ; then
+          source $HOME/bashrc/gpg-functions.sh
+          gpg_activate
+        fi
+fi
+....
+
+NOTE: Change the functions to use the name of the hosts you will be running the agent upon.
+
+== Final setups
+
+* Now you should be able to run the pass commands, and store passwords
+* Run:  pass show <name>
+** This will prompt you for your GPG passphrase, and cache the certificate in your gpg-agent.
+* If you want to keep the files up to date between say your Mac and your LinuxView, use the: pass git commands.
+* Now if you run pass show <name> you should NOT need a passphrase.
+
+* Assuming you have your ssh keys setup such that you either have a ssh-agent or the lack of a passphrase:
+** ssh <your-machine-running-gpg-agent> "pass show <name>"
+** Should return the password without any prompting.
+
+
+[appendix]
+== Tips And  Troubleshooting
+
+* The files can be found here:  https://github.qualcomm.com/mhale/bashrc
+* Don't forget to trust your GPG key
+* If you want to use the "pass git" functions and keep password stores in sync across machines
+** Be sure your GPG private key is also the same on each machine.
+
