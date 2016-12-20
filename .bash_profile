@@ -14,8 +14,10 @@ if [ -f $HOME/bashrc/bashrc ] ; then
   source $HOME/bashrc/bashrc
 fi
 OSNAME=`uname`
-export HISTSIZE=5000
-export HISTCONTROL=ignoredups
+export HISTSIZE=50000
+export HISTFILESIZE=50000
+export HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
 if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	debug "Running $OSNAME Setup"
 	pathprepend /pkg/qct/software/lsf
