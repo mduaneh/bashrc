@@ -20,6 +20,8 @@ setup: ${TARGETS}
 	${ln} -s -T -f ${PWD}/screen-256color-it ~/.terminfo/s/screen-256color-it
 	${ln} -s -T -f ${PWD}/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 	if [ -e ${PWD}/gpg-agent.${OSName}.conf ]; then ${ln} -s -T -f ${PWD}/gpg-agent.${OSName}.conf ~/.gnupg/gpg-agent.conf; fi
+	${ln} -s -T -f ${PWD}/ssh-ident ~/bin/ssh
+	${ln} -s -T -f ${PWD}/ssh-ident ~/bin/scp
 
 git-prompt.sh:
 	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/$@
