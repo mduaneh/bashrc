@@ -12,6 +12,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias checkHome='checkSpace; /pkg/icetools/bin/quota.eng -u mhale -d /usr2/mhale'
 	alias aklog='/pkg/afs/tools/aklog/aklog.sled11sp3'
 	alias cdgit='cd ~/projectPaths/mhale/git'
+	alias cdtrace='cd /prj/qct/wire_trace'
 	alias become='env TERM=screen-256color sudo su - -s /bin/bash '
 	alias bjobsnc='env LSFBINARY_NOCACHE=1 bjobs'
 else
