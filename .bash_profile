@@ -23,7 +23,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	pathprepend /pkg/qct/software/lsf
 	pathprepend /pkg/ice/sysadmin/lsf/bin
 	# This allows the LSF man pages to get added 
-        if [ -e "/pkg/ice/sysadmin/lsf/bin/lsfconf" ]; then
+        if [ -e "/pkg/ice/sysadmin/lsf/bin/lsfconf" ] && [ -e "/etc/lsf.conf" ]; then
              eval `/pkg/ice/sysadmin/lsf/bin/lsfconf | grep LSF_MANDIR`
              pathappend      ${LSF_MANDIR} MANPATH
         fi
