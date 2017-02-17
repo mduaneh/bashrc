@@ -64,7 +64,7 @@ settitle () {
 	then
         	echo -n -e "\033]0;${name}\007"
 	else
-		if [ -e /pkg/icetools/bin/lsid ];
+		if [ -e /pkg/icetools/bin/lsid ]; then
         		cluster=`lsid | grep 'My cluster' | awk '{print $NF}'`||`echo -n ""`
 		fi
         	name=${1:-"${host}:${cluster}"}
