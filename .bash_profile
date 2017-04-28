@@ -29,8 +29,8 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
         fi
 
 	# I'm specifically looking for the executable here because of enclaves
-	if [ -e /pkg/qct/software/gnu/tmux/1.9a/bin/tmux ] ; then
-	  	pathprepend  /pkg/qct/software/gnu/tmux/1.9a/bin/
+	if [ -e /pkg/qct/software/gnu/tmux/2.3/bin/tmux ] ; then
+	  	pathprepend  /pkg/qct/software/gnu/tmux/2.3/bin/
 	fi
 	
 	pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p

@@ -46,8 +46,8 @@ Host encnaa-admin1.qualcomm.com
     HostName encnaa-admin1
     ProxyCommand ssh -A -t -W %h:%p jumprtp1 2> /dev/null
 
-Host vl-*-ecdca.qualcomm.com vl-*-ecdca
-    ProxyCommand ssh -A -t -W %h:%p encnaa-admin1.qualcomm.com 2> /dev/null
+#Host vl-*-ecdca.qualcomm.com vl-*-ecdca
+#    ProxyCommand ssh -A -t -W %h:%p encnaa-admin1.qualcomm.com 2> /dev/null
 
 ########################################################################
 #                         _
