@@ -14,8 +14,9 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias cdgit='cd ~/projectPaths/mhale/git'
 	alias cdtrace='cd /prj/qct/wire_trace'
 	alias become='env TERM=screen-256color sudo su - -s /bin/bash '
+	alias becomec="env TERM=screen-256color sudo su - -s /bin/tcsh "
 	alias bjobsnc='env LSFBINARY_NOCACHE=1 bjobs'
-else
+ else
 	alias cdgit='cd ~/Documents/git'
 	alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;killall Finder /System/Library/CoreServices/Finder.app'
 	alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
