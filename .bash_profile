@@ -20,6 +20,7 @@ export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	debug "Running $OSNAME Setup"
+        export PS1="\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 	pathprepend /pkg/qct/software/lsf
 	pathprepend /pkg/ice/sysadmin/lsf/bin
 	# This allows the LSF man pages to get added 

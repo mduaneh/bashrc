@@ -1,5 +1,7 @@
 #!/bin/bash
-if [[ $hostname == vl-mhale-gbc ]] || [[ $hostname == mhale-mac ]]; then
+source ~/bashrc/bashrc
+if [ "$hostname" == "vl-mhale-gbc" ] || [ "$hostname" == "mhale-mac" ]; then
+	debug "On trusted host"
         if [ -f $HOME/bashrc/gpg-functions.sh ] ; then
           source $HOME/bashrc/gpg-functions.sh
           gpg_activate
