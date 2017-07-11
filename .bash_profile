@@ -20,7 +20,6 @@ export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	debug "Running $OSNAME Setup"
-        export PS1="\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 	pathprepend /pkg/qct/software/lsf
 	pathprepend /pkg/ice/sysadmin/lsf/bin
 	# This allows the LSF man pages to get added 
@@ -78,6 +77,8 @@ if [[ $OSNAME == "Darwin" ]]; then
 	# OLD# export PROMPT_COMMAND='echo -ne "\033]0;$(basename ${PWD}): ${PWD}\007"'
 	export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 fi 
+#  GLOBAL
+export PS1="\n\[$(tput setaf 2)\]\D{%F %T}\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 # Common additions
 pathprepend $HOME/bin
 
