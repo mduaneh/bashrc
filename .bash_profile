@@ -32,6 +32,11 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	if [ -e /pkg/qct/software/gnu/tmux/2.3/bin/tmux ] ; then
 	  	pathprepend  /pkg/qct/software/gnu/tmux/2.3/bin/
 	fi
+	# I hate subscriptions
+	if [ -e /usr/local/etc/subscriptions/qct_clearcase/profile ] ; then
+	  	source /usr/local/etc/subscriptions/qct_clearcase/profile	
+	fi
+	
 	
 	pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
 	pathprepend  /pkg/sysadmin/bin      # For things like mdbrotate
