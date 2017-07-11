@@ -19,19 +19,53 @@ StrictHostKeyChecking   no
 #
 ########################################################################
 #  QCOM <-> AWSBastion <-> AWSInstance
+#  QCOM -> mhale-SimCloudDMZ-public -> mhale-SimCloudDMZ-private -> mhale-SimCloudCompute-compute
 
-Host 52.* 54.* 107.*
+Host AWS-LSFMaster-East-v2
+	IdentityFile ~/.ssh/iceadmin.pem
+	HostName 10.199.16.10
+        User ec2-user
+Host AWS-Infra-East-v2
+	IdentityFile ~/.ssh/iceadmin.pem
+	HostName 172.32.12.109
+	User ec2-user
+	ProxyCommand ssh -A -tt -W %h:%p AWS-LSFMaster-East-v2
+
+Host 52.* 54.* 107.* 10.199.*
 	IdentityFile ~/.ssh/wire-mhale-instances.pem
 	User ec2-user
-Host awsbastion
-	HostName 54.71.177.217
+Host mhale-SimCloudDMZ-public
+	HostName 54.159.31.29
 	IdentityFile ~/.ssh/wire-mhale-instances.pem
 	User ec2-user
 
-Host 174.* 172.*
+Host mhale-SimCloudDMZ-private
+	HostName 10.199.10.163
+	IdentityFile ~/.ssh/wire-mhale-instances.pem
+	ProxyCommand ssh -A -tt  -W %h:%p mhale-SimCloudDMZ-public
+	User ec2-user
+Host mhale-SimCloudCompute-SUSE
+        HostName 10.16.18.2
 	user ec2-user
 	IdentityFile ~/.ssh/wire-mhale-instances.pem
-	ProxyCommand ssh -v -tt  -W %h:%p awsbastion
+	ProxyCommand ssh -A -tt  -W %h:%p mhale-SimCloudDMZ-private
+	
+Host mhale-SimCloudCompute-compute
+        HostName 10.16.18.2
+	user ec2-user
+	IdentityFile ~/.ssh/wire-mhale-instances.pem
+	ProxyCommand ssh -A -tt  -W %h:%p mhale-SimCloudDMZ-private
+	
+Host mhale-SimCloudCompute-c3xlarge
+        HostName 10.16.24.113
+	user ec2-user
+	IdentityFile ~/.ssh/wire-mhale-instances.pem
+	ProxyCommand ssh  -A -tt  -W %h:%p mhale-SimCloudDMZ-private
+	
+Host 174.* 172.* 10.16.* 
+	user ec2-user
+	IdentityFile ~/.ssh/wire-mhale-instances.pem
+	ProxyCommand ssh  -A -tt  -W %h:%p mhale-SimCloudDMZ-private
 
 ########################################################################
 #                _
@@ -42,11 +76,11 @@ Host 174.* 172.*
 #
 ########################################################################
 # Use Jump->Bastion to get to hosts in ECDC:
-Host encnaa-admin1.qualcomm.com
+Host encnaa-admin1.qualcomm.com bast-encnaa
     HostName encnaa-admin1
     ProxyCommand ssh -A -t -W %h:%p jumprtp1 2> /dev/null
 
-Host vl-*-ecdca.qualcomm.com vl-*-ecdca
+Host v*-ecdca.qualcomm.com v*-ecdca
     ProxyCommand ssh -A -t -W %h:%p encnaa-admin1.qualcomm.com 2> /dev/null
 
 ########################################################################

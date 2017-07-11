@@ -70,7 +70,7 @@ if [[ $OSNAME == "Darwin" ]]; then
 	pathprepend ${GOPATH}/bin
 	pathappend /Applications/Splunk/bin
 	pathappend  ./.
-	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java"
+	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 	export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 	export HOMEBREW_GITHUB_API_TOKEN=86d1eff6f2645f2717c3b98635194b6e5e883ed0
 	# COMMENTED OUT# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
