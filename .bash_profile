@@ -23,14 +23,14 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	pathprepend /pkg/qct/software/lsf
 	pathprepend /pkg/ice/sysadmin/lsf/bin
 	# This allows the LSF man pages to get added 
-        if [ -e "/pkg/ice/sysadmin/lsf/bin/lsfconf" ]; then
+        if [ -e "/pkg/ice/sysadmin/lsf/bin/lsfconf" ] && [ -e "/etc/lsf.conf" ]; then
              eval `/pkg/ice/sysadmin/lsf/bin/lsfconf | grep LSF_MANDIR`
              pathappend      ${LSF_MANDIR} MANPATH
         fi
 
 	# I'm specifically looking for the executable here because of enclaves
-	if [ -e /pkg/qct/software/gnu/tmux/1.9a/bin/tmux ] ; then
-	  	pathprepend  /pkg/qct/software/gnu/tmux/1.9a/bin/
+	if [ -e /pkg/qct/software/gnu/tmux/2.3/bin/tmux ] ; then
+	  	pathprepend  /pkg/qct/software/gnu/tmux/2.3/bin/
 	fi
 	
 	pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
