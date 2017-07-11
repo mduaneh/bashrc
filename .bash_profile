@@ -75,13 +75,15 @@ if [[ $OSNAME == "Darwin" ]]; then
 	pathprepend ${GOPATH}/bin
 	pathappend /Applications/Splunk/bin
 	pathappend  ./.
-	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java"
+	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 	export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 	export HOMEBREW_GITHUB_API_TOKEN=86d1eff6f2645f2717c3b98635194b6e5e883ed0
 	# COMMENTED OUT# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 	# OLD# export PROMPT_COMMAND='echo -ne "\033]0;$(basename ${PWD}): ${PWD}\007"'
-	export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
+	#export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 fi 
+#  GLOBAL
+export PS1="\n\[$(tput setaf 2)\]\D{%F %T} $(__git_ps1)\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 # Common additions
 pathprepend $HOME/bin
 
