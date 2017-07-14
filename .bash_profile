@@ -32,6 +32,11 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	if [ -e /pkg/qct/software/gnu/tmux/2.3/bin/tmux ] ; then
 	  	pathprepend  /pkg/qct/software/gnu/tmux/2.3/bin/
 	fi
+	# I hate subscriptions
+	if [ -e /usr/local/etc/subscriptions/qct_clearcase/profile ] ; then
+	  	source /usr/local/etc/subscriptions/qct_clearcase/profile	
+	fi
+	
 	
 	pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
 	pathprepend  /pkg/sysadmin/bin      # For things like mdbrotate
@@ -79,7 +84,8 @@ if [[ $OSNAME == "Darwin" ]]; then
 	#export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 fi 
 #  GLOBAL
-export PS1="\n\[$(tput setaf 2)\]\D{%F %T} $(__git_ps1)\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
+#export PS1="\n\[$(tput setaf 2)\]\D{%F %T} $(__git_ps1)\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
+export PS1="\n\[$(tput setaf 2)\]\D{%F %T} \[\$(__git_ps1)\]\n\[$(tput sgr0)\]\[$(tput setaf 7)\]\w\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 # Common additions
 pathprepend $HOME/bin
 
