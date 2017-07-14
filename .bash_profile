@@ -54,6 +54,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	export TERM=screen-256color-it
 	export LSF_JOB_TAG=`/pkg/icetools/bin/ptagger -f 33193 -t 00 -g wire`
 	export DRM_PROJECT=$LSF_JOB_TAG
+	export PROMPT_COMMAND='echo -ne "\033k"$(hostname -s)"\033\\"'
 	# Having . in the PATH is dangerous
 	#if [ $EUID -gt 99 ]; then
 	#  pathappend .
