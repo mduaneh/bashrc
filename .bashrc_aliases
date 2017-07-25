@@ -16,6 +16,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias cdtrace='cd /prj/qct/wire_trace'
 	alias become='env TERM=screen-256color sudo su - -s /bin/bash '
 	alias becomec="env TERM=screen-256color sudo su - -s /bin/tcsh "
+	alias rE="stty erase "
 	alias bjobsnc='env LSFBINARY_NOCACHE=1 bjobs'
  else
 	alias cdgit='cd ~/Documents/git'
