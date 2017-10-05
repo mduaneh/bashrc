@@ -6,6 +6,7 @@ alias perlsh='perl -d -e "42;"'
 alias rcd='cd `pwd -P`'
 alias hist='history 50'
 alias ghist='history | grep '
+alias scp='BINARY_SSH=scp ~/bin/ssh-ident'
 
 if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias ct='cleartool'
