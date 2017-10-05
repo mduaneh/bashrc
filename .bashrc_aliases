@@ -29,7 +29,8 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias gtmux='echo -n -e "\033]0;gtmux\007"; ssh vl-mhale-gbc.qualcomm.com -t /pkg/qct/software/gnu/tmux/1.9a/bin/tmux new-session -A -s GBC; echo -n -e "\033]0;bash\007"'
 	alias etmux='echo -n -e "\033]0;etmux\007"; ssh vl-mhale-ecdca.qualcomm.com -t env TERMINFO=/usr/share/terminfo /pkg/qct/software/gnu/tmux/1.9a/bin/tmux new-session -A -s ECDCA; echo -n -e "\033]0;bash\007"'
 	alias htmux='echo -n -e "\033]0;Home-tmux\007"; cd ~/bin/mhale.home && ./mhale -t tmux a ;echo -n -e "\033]0;bash\007" '
-	alias clean="pbpaste | perl -p -e 's/\n//g; s/\s+//g;' | pbcopy "
+	alias clean="pbpaste | perl -p -e 's/[[:^print:]]//g; s/\s+//g;' | pbcopy "
+	alias qclean="pbpaste | perl -p -e 's/[[:^print:]]//g; s/\s+//g; s/\|//g;' | pbcopy "
 	alias rehash='hash -r'
 	alias ls='ls -G'
 	alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
