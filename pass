@@ -7,4 +7,4 @@ if [ "$hostname" == "vl-mhale-gbc" ] || [ "$hostname" == "mhale-mac" ]; then
           gpg_activate
         fi
 fi
-/usr/bin/pass "${1+$@}"
+~/bin/usr/bin/pass "${1+$@}"
