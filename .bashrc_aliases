@@ -18,6 +18,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias becomec="env TERM=screen-256color sudo su - -s /bin/tcsh "
 	alias rE="stty erase "
 	alias bjobsnc='env LSFBINARY_NOCACHE=1 bjobs'
+	alias clean="perl -p -e 's/[^\S\x0a\x0d]//g;'"
  else
 	alias cdgit='cd ~/Documents/git'
 	alias readelf=greadelf
