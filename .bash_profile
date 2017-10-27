@@ -27,6 +27,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
              eval `/pkg/ice/sysadmin/lsf/bin/lsfconf | grep LSF_MANDIR`
              pathappend      ${LSF_MANDIR} MANPATH
         fi
+	export QC_LSF_CLUSTER=${QC_LSF_CLUSTER:-$(lsid | grep "cluster name" | head -n 1 | awk '{printf $NF}')}
 
 	# I'm specifically looking for the executable here because of enclaves
 	if [ -e /pkg/qct/software/gnu/tmux/2.3/bin/tmux ] ; then
@@ -52,6 +53,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	pathprepend  /pkg/afs/bin           # For asudo
 	pathprepend  /usr/atria/bin         # For cleartool
 	pathprepend  /pkg/icetools/bin      # For stuff like quota.eng
+	pathprepend  /pkg/qct/software/wire/bin      # For wire stuff
 	pathprepend $HOME/bin
 	pathprepend /usr/sbin               # For things like traceroute
 	# Last thing on the path
@@ -59,7 +61,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	export TERM=screen-256color-it
 	export LSF_JOB_TAG=`/pkg/icetools/bin/ptagger -f 51111 -t 00 -g ect`."wire"
 	export DRM_PROJECT=$LSF_JOB_TAG
-	export PROMPT_COMMAND='echo -ne "\033k"$(hostname -s)"\033\\"'
+	#export PROMPT_COMMAND='echo -ne "\033$(hostname -s)\033"'
 	# Having . in the PATH is dangerous
 	#if [ $EUID -gt 99 ]; then
 	#  pathappend .
@@ -85,8 +87,9 @@ if [[ $OSNAME == "Darwin" ]]; then
 fi 
 #  GLOBAL
 #export PS1="\n\[$(tput setaf 2)\]\D{%F %T} $(__git_ps1)\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
-export PS1="\n\[$(tput setaf 2)\]\D{%F %T} \[\$(__git_ps1)\]\n\[$(tput sgr0)\]\[$(tput setaf 7)\]\w\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
+export PS1="\n\[$(tput setaf 2)\]\D{%F %T} \$QC_LSF_CLUSTER \[\$(__git_ps1)\]\n\[$(tput sgr0)\]\[$(tput setaf 7)\]\w\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 # Common additions
+unset PROMPT_COMMAND
 pathprepend $HOME/bin
 
 # Having . in the PATH is dangerous

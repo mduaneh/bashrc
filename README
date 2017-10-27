@@ -1,0 +1,7 @@
+= mhale bashrc setup
+
+== screen-256color-it.uuencode
+
+* Be sure to uuencode screen-256color-it if any updates are needed.  This file caused an issue in the past with being able to pull/push the repo while on linux.
+* uuencode --base64 ~/.terminfo/s/screen-256color-it /dev/stdout > screen-256color-it.uuencode
+* The setup step in the Makefile should take care of decoding it

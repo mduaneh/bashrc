@@ -66,6 +66,10 @@ Host 174.* 172.* 10.16.*
 	user ec2-user
 	IdentityFile ~/.ssh/wire-mhale-instances.pem
 	ProxyCommand ssh  -A -tt  -W %h:%p mhale-SimCloudDMZ-private
+Host ip-10-197-* ip-172-*
+	HostName %h.simcloudv2-us-west-02.aws.qualcomm.com
+	user ec2-user
+	IdentityFile ~/.ssh/sc-admin.pem
 
 ########################################################################
 #                _
@@ -141,3 +145,5 @@ LogLevel Error
 Host *
 	ForwardX11 yes
 	ForwardAgent yes
+	PermitLocalCommand yes
+	LocalCommand [ "$TERM" == 'screen'* ] && echo -ne "\033k%h\033\\"
