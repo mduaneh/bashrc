@@ -21,6 +21,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias bjobsnc='env LSFBINARY_NOCACHE=1 bjobs'
  else
 	alias cdgit='cd ~/Documents/git'
+	alias csv2markup="perl -p -e 's/^/|/; s/,/|/g; s/$/|/; s/\|/||/g if $. == 1;'"
 	alias readelf=greadelf
 	alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;killall Finder /System/Library/CoreServices/Finder.app'
 	alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
@@ -31,6 +32,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias htmux='echo -n -e "\033]0;Home-tmux\007"; cd ~/bin/mhale.home && ./mhale -t tmux a ;echo -n -e "\033]0;bash\007" '
 	alias clean="pbpaste | perl -p -e 's/[[:^print:]]//g; s/\s+//g;' | pbcopy "
 	alias qclean="pbpaste | perl -p -e 's/[[:^print:]]//g; s/\s+//g; s/\|//g;' | pbcopy "
+	alias qcleans='pbpaste | perl -p -e '\''s/[[:^print:]]//g; s/\s+/ /g; s/\|//g;'\'' | pbcopy '
 	alias rehash='hash -r'
 	alias ls='ls -G'
 	alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
