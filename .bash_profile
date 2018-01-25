@@ -77,6 +77,7 @@ if [[ $OSNAME == "Darwin" ]]; then
 	pathprepend /usr/local/opt/ruby/bin
 	pathprepend ${GOPATH}/bin
 	pathappend /Applications/Splunk/bin
+	pathappend "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 	pathappend  ./.
 	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 	export PYTHONPATH=/usr/local/lib/python2.7/site-packages
