@@ -698,7 +698,7 @@ class AgentManager(object):
           file=sys.stderr, loglevel=LOG_INFO)
       self.LoadKeyFiles(toload)
     else:
-      print("All keys already loaded", file=sys.stderr, loglevel=LOG_INFO)
+      print("All keys already loaded", file=sys.stderr, loglevel=LOG_DEBUG)
 
   def FindUnloadedKeys(self, keys):
     """Determines which keys have not been loaded yet.

@@ -20,7 +20,7 @@ pathremove () {
         local IFS=':'
         local NEWPATH
         local DIR
-        local PATHVARIABLE=${2:-PATH}
+        local PATHVARIABLE="${2:-PATH}"
         for DIR in ${!PATHVARIABLE} ; do
                 if [ "$DIR" != "$1" ] ; then
                   NEWPATH=${NEWPATH:+$NEWPATH:}$DIR
@@ -35,16 +35,16 @@ if [ -f /etc/bashrc ] ; then
 fi
 pathprepend () {
         pathremove $1 $2
-	if [ -d $1 ] ; then
-	        local PATHVARIABLE=${2:-PATH}
+	if [ -d "$1" ] ; then
+	        local PATHVARIABLE="${2:-PATH}"
 	        export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
 	fi
 }
 
 pathappend () {
-        pathremove $1 $2
-	if [ -d $1 ] ; then
-        	local PATHVARIABLE=${2:-PATH}
+        pathremove "$1" "$2"
+	if [ -d "$1" ] ; then
+        	local PATHVARIABLE="${2:-PATH}"
         	export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
 	fi
 }
@@ -55,6 +55,14 @@ function refresh_history () {
 		history -a && history -c && history -r
 		LAST_HISTORY_WRITE=$SECONDS
 	fi
+}
+scp-vl () {
+	local file=$1
+	local destination=${2:-/prj/qct/wire/users/mhale/scratch}
+	scp $1 vl-mhale-gridsdca:${destination}
+}
+scp-breeze () {
+	scp-vl $1 /prj/qct/wire/users/mhale/breeze/downloads/.
 }
 settitle () {
 	local    host=$(hostname)
@@ -84,3 +92,7 @@ unset OSNAME
 debug  "End of ~/bashrc/bashrc"
 
 # End ~/.bashrc
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[ -f /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash ] && . /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash
