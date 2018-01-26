@@ -9,7 +9,7 @@ if [[ "$hostname" == "vl-mhale-gbc" ]] || [[ "$hostname" == "mhale-mac" ]] || [[
 fi
 OSNAME=`uname`
 if [[ ${OSNAME} == "Linux" ]] || [[ ${OSNAME} == "SunOS" ]] ; then
-	pass=~/bashrc/bin/password-store.sh
+	pass=~/bashrc/usr/bin/pass
 else
 	pass=/usr/local/bin/pass
 fi
