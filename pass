@@ -7,4 +7,9 @@ if [ "$hostname" == "vl-mhale-gbc" ] || [ "$hostname" == "mhale-mac" ]; then
           gpg_activate
         fi
 fi
-~/bin/usr/bin/pass "${1+$@}"
+if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
+pass=~/bashrc/bin/password-store.sh
+else
+pass=/usr/local/bin/pass
+fi
+${pass} "${1+$@}"

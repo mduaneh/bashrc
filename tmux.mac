@@ -1,0 +1,5 @@
+set -ga terminal-overrides 'ansi*:smcup@:rmcup@'
+set -ga terminal-overrides ',screen*:smcup@:rmcup@'
+set -ga terminal-overrides ',xterm*:smcup@:rmcup@'
+set-option -g set-titles on
+set -g update-environment -r
