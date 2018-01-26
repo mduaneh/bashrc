@@ -1,15 +1,16 @@
 #!/bin/bash
 source ~/bashrc/bashrc
-if [ "$hostname" == "vl-mhale-gbc" ] || [ "$hostname" == "mhale-mac" ]; then
+if [[ "$hostname" == "vl-mhale-gbc" ]] || [[ "$hostname" == "mhale-mac" ]] || [[ "$hostname" == "vl-mhale-ecdca" ]]; then
 	debug "On trusted host"
         if [ -f $HOME/bashrc/gpg-functions.sh ] ; then
           source $HOME/bashrc/gpg-functions.sh
           gpg_activate
         fi
 fi
-if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
-pass=~/bashrc/bin/password-store.sh
+OSNAME=`uname`
+if [[ ${OSNAME} == "Linux" ]] || [[ ${OSNAME} == "SunOS" ]] ; then
+	pass=~/bashrc/bin/password-store.sh
 else
-pass=/usr/local/bin/pass
+	pass=/usr/local/bin/pass
 fi
 ${pass} "${1+$@}"
