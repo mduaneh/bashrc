@@ -80,12 +80,14 @@ Host ip-10-197-* ip-172-*
 #
 ########################################################################
 # Use Jump->Bastion to get to hosts in ECDC:
-#Host encnaa-admin1.qualcomm.com bast-encnaa
-#    HostName encnaa-admin1
-#    ProxyCommand ssh -A -t -W %h:%p jumprtp1 2> /dev/null
-#
-#Host v*-ecdca.qualcomm.com v*-ecdca
-#    ProxyCommand ssh -A -t -W %h:%p encnaa-admin1.qualcomm.com 2> /dev/null
+Host encnaa-admin1.qualcomm.com bast-encnaa
+    HostName encnaa-admin1
+    ProxyCommand ssh -tt -A -W %h:%p jumprtp1 2> /dev/null
+
+Host v*-ecdca.qualcomm.com v*-ecdca
+     ProxyCommand ssh -tt -A -W %h:%p encnaa-admin1.qualcomm.com 2> /dev/null
+# Using older ProxyCommand because jumprtp1 does not have new version of openssh
+#     ProxyJump jumprtp1,encnaa-admin1.qualcomm.com 
 
 ########################################################################
 #                         _
