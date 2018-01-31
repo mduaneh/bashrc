@@ -8,6 +8,7 @@ alias hist='history 50'
 alias ghist='history | grep '
 alias scp='BINARY_SSH=scp ~/bin/ssh-ident'
 
+OSNAME=${OSNAME:-`uname`}
 if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias ct='cleartool'
 	alias checkSpace='du -ch --max-depth=1 --exclude=.snapshot | sort -h -r '
@@ -20,7 +21,8 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias rE="stty erase "
 	alias bjobsnc='env LSFBINARY_NOCACHE=1 bjobs'
 	alias clean="perl -p -e 's/[^\S\x0a\x0d]//g;'"
- else
+	alias pkg_aarch64='cd /afs/.localcell/cm.dev/GV2/sysname/pkg.aarch64_linux26'
+ else # ELSE Probably macOS
 	alias cdgit='cd ~/Documents/git'
 	alias csv2markup="perl -p -e 's/^/|/; s/,/|/g; s/$/|/; s/\|/||/g if $. == 1;'"
 	alias readelf=greadelf
