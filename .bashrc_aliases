@@ -15,6 +15,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias aklog='/pkg/afs/tools/aklog/aklog.sled11sp3'
 	alias cdgit='cd ~/projectPaths/mhale/git'
 	alias cdtrace='cd /prj/qct/wire_trace'
+	alias sudo='env TERM=screen-256color /usr/bin/sudo'
 	alias become='env TERM=screen-256color sudo su - -s /bin/bash '
 	alias becomec="env TERM=screen-256color sudo su - -s /bin/tcsh "
 	alias rE="stty erase "
