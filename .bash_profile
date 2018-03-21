@@ -58,9 +58,10 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	pathprepend /usr/sbin               # For things like traceroute
 	# Last thing on the path
 	pathappend  /prj/qct/wire/bin
-	export TERM=screen-256color-it
+	#export TERM=screen-256color-it
 	export TERM=tmux
-	export TERMINFO=/pkg/qct/software/gnu/tmux/2.3/share/terminfo:~/.terminfo
+	export TERMINFO=/pkg/qct/software/gnu/tmux/2.3/share/terminfo
+	export TERMINFO_DIRS=/pkg/qct/software/gnu/tmux/2.3/share/terminfo:~/.terminfo:
 	export LSF_JOB_TAG=`/pkg/icetools/bin/ptagger -f 51111 -t 00 -g ect`."wire"
 	export DRM_PROJECT=$LSF_JOB_TAG
 	#export PROMPT_COMMAND='echo -ne "\033$(hostname -s)\033"'
