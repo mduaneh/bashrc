@@ -10,8 +10,9 @@ export DEBUG=${DEBUG:-"n"}
 # Personal aliases and functions should go in ~/.bashrc.  System wide
 # environment variables and startup programs are in /etc/profile.
 # System wide aliases and functions are in /etc/bashrc.
-if [ -f $HOME/bashrc/bashrc ] ; then
-  source $HOME/bashrc/bashrc
+MHALEHOME=$(readlink -f ~mhale)
+if [ -f $MHALEHOME/bashrc/bashrc ] ; then
+  source $MHALEHOME/bashrc/bashrc
 fi
 OSNAME=`uname`
 export HISTSIZE=50000
@@ -54,7 +55,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	pathprepend  /usr/atria/bin         # For cleartool
 	pathprepend  /pkg/icetools/bin      # For stuff like quota.eng
 	pathprepend  /pkg/qct/software/wire/bin      # For wire stuff
-	pathprepend $HOME/bin
+	pathprepend $MHALEHOME/bin
 	pathprepend /usr/sbin               # For things like traceroute
 	# Last thing on the path
 	pathappend  /prj/qct/wire/bin
@@ -94,12 +95,12 @@ fi
 export PS1="\n\[$(tput setaf 2)\]\D{%F %T} \$QC_LSF_CLUSTER \[\$(__git_ps1)\]\n\[$(tput sgr0)\]\[$(tput setaf 7)\]\w\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 # Common additions
 unset PROMPT_COMMAND
-pathprepend $HOME/bin
+pathprepend $MHALEHOME/bin
 
 # Having . in the PATH is dangerous
 # Setup my aliases
-if [ -e "$HOME/bashrc/.bashrc_aliases" ] ; then
- 	source $HOME/bashrc/.bashrc_aliases
+if [ -e "$MHALEHOME/bashrc/.bashrc_aliases" ] ; then
+ 	source $MHALEHOME/bashrc/.bashrc_aliases
 fi
 	
 # End ~/.bash_profile
