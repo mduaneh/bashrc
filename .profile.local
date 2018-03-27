@@ -1,3 +1,5 @@
 echo "Loading profile.local"
 # Source DM information
-source ~/.dm/dm.bashrc
+if [ -f ~/.dm/dm.bashrc ]; then
+	source ~/.dm/dm.bashrc
+fi
