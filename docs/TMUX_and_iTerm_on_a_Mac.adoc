@@ -1,0 +1,99 @@
+= How to setup TMUX on a Mac
+Michael D. Hale
+:toc:     
+:tmuxDir: /home/utils/tmux-2.7
+:tmuxBinDir: {tmuxDir}/bin
+:tmux: {tmuxBinDir}/tmux
+:TERM: screen256-color
+== Prerequisites
+
+* Ability to ssh from your desktop to your destination host
+** Typically this destination is your "Linux View"
+* tmux installation is available to your "Linux View"
+** tmux is available in /home/utils/tmux* space at the following location:
+*** {tmux}
+* iTerm2 Version 3+ Installed.
+** https://www.iterm2.com/version3.html
+
+== iTerm2 Setup
+
+For best results it is recommended to use iTerm2, instead of the Mac’s native Terminal.
+
+Thus this doc is written specically for use with iTerm2.
+
+=== Preferences
+
+* General Tab
+** tmux Integration Section
+*** Choose Open tmux windows as tabs in existing window
+*** Select Automatically hide the tmux client session after connecting
+** These selections cause the tmux session to minimize, then un-minimize to start/open tmux windows for that session/profile.
+* Appearance Tab
+** Window & Tab Titles Section
+*** Select Show window number and Show profile name
+** If you name your profiles such that they convey Design Center then the windows will display this profile/design center name.
+
+=== Profiles
+
+* For ease of entry, Profiles will be used to enter tmux sessions.
+. Open iTerm2 on your Mac
+. Create a new profile (Example is for ECDCA)
+. Set the command to be:
+** `ssh -A <hostname> -t {tmux} -CC new-session -A -d -s ECDCA`
+
+== Linux View Setup
+
+=== tmux configuration
+
+* Create a ~/.tmux.conf
+* These settings allow you scroll up into the buffer like expected .tmux.conf content
+
+[source,bashrc,subs="attributes"]
+----
+set -g default-terminal "{TERM}"
+set -ga terminal-overrides 'ansi*:smcup@:rmcup@'
+set -ga terminal-overrides ',screen*:smcup@:rmcup@'
+set -ga terminal-overrides ',xterm*:smcup@:rmcup@'
+set -g update-environment -r
+----
+
+=== Environment Setup
+
+* Add {tmuxBinDir} to your PATH variable.
+* Set the TERM variable to `{TERM}`
+
+////
+* Set the TERMINFO variable to:
+** `{tmuxDir}/share/terminfo`
+////
+
+==== bashrc
+[source,bashrc,subs="attributes"]
+----
+export PATH=${PATH}:{tmuxBinDir}
+export TERM={TERM}
+----
+
+//export TERMINFO={tmuxDir}/share/terminfo
+
+==== cshrc
+
+[source,cshrc,subs="attributes"]
+----
+setenv PATH ${PATH}:{tmuxBinDir}
+setenv TERM {TERM}
+----
+
+//setenv TERMINFO {tmuxDir}/share/terminfo
+
+== VIM Users Beware
+
+* With the setup above you may run into issues with vi/vim.
+* You may want to modify your setup based on:
+** https://medium.com/@dubistkomisch/how-to-actually-get-italics-and-true-colour-to-work-in-iterm-tmux-vim-9ebe55ebc2be[How to actually get italics and true colour to work in iTerm + tmux + vim]
+
+== Concers in the NVidia Environment
+
+* If you use Profiles and specify o-xterm you may land on a different xterm server.
+** Once you have a tmux session it would be best to update your profile to ALWAYS use the same xterm server.
+** Does this cause any concern?

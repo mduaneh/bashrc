@@ -1,4 +1,5 @@
 # Begin ~/.bash_profile
+#set -vx
 export DEBUG=${DEBUG:-"n"}
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
@@ -10,16 +11,20 @@ export DEBUG=${DEBUG:-"n"}
 # Personal aliases and functions should go in ~/.bashrc.  System wide
 # environment variables and startup programs are in /etc/profile.
 # System wide aliases and functions are in /etc/bashrc.
+OSNAME=`uname`
+if [[ $OSNAME == "Darwin" ]]; then
+MHALEHOME=$(greadlink -f ~mhale)
+else
 MHALEHOME=$(readlink -f ~mhale)
+fi
 if [ -f $MHALEHOME/bashrc/bashrc ] ; then
   source $MHALEHOME/bashrc/bashrc
 fi
-OSNAME=`uname`
 export HISTSIZE=50000
 export HISTFILESIZE=50000
 export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
-if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
+if [[ $OSNAME == "Linux" ]] || [[ $OSNAME == "SunOS" ]] ; then
 	debug "Running $OSNAME Setup"
 	pathprepend /pkg/qct/software/lsf
 	pathprepend /pkg/ice/sysadmin/lsf/bin
