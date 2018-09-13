@@ -20,7 +20,7 @@ fi
 if [ -f $MHALEHOME/bashrc/bashrc ] ; then
   source $MHALEHOME/bashrc/bashrc
 fi
-if [ -f $MHALEHOME/bashrc/bashrc.nvidia ] ; then
+if [ -f $MHALEHOME/bashrc/bashrc.nvidia ] && [[  $OSNAME == "Linux" ]] ; then
   source $MHALEHOME/bashrc/bashrc.nvidia
 fi
 export HISTSIZE=50000
