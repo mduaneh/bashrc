@@ -93,7 +93,7 @@ setenv TERM {TERM}
 * You may want to modify your setup based on:
 ** https://medium.com/@dubistkomisch/how-to-actually-get-italics-and-true-colour-to-work-in-iterm-tmux-vim-9ebe55ebc2be[How to actually get italics and true colour to work in iTerm + tmux + vim]
 
-== Concers in the NVidia Environment
+== Concerns in the NVidia Environment
 
 * If you use Profiles and specify o-xterm you may land on a different xterm server.
 ** Once you have a tmux session it would be best to update your profile to ALWAYS use the same xterm server.
