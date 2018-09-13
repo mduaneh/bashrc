@@ -33,6 +33,11 @@ pathremove () {
 if [ -f /etc/bashrc ] ; then
   source /etc/bashrc
 fi
+pathset() {
+	#Use this to ensure only a single value is set
+	local PATHVARIABLE="${2:-PATH}"
+	export $PATHVARIABLE="$1"
+}
 pathprepend () {
         pathremove $1 $2
 	if [ -d "$1" ] ; then

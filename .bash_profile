@@ -13,12 +13,15 @@ export DEBUG=${DEBUG:-"n"}
 # System wide aliases and functions are in /etc/bashrc.
 OSNAME=`uname`
 if [[ $OSNAME == "Darwin" ]]; then
-MHALEHOME=$(greadlink -f ~mhale)
+	MHALEHOME=$(greadlink -f ~mhale)
 else
-MHALEHOME=$(readlink -f ~mhale)
+	MHALEHOME=$(readlink -f ~mhale)
 fi
 if [ -f $MHALEHOME/bashrc/bashrc ] ; then
   source $MHALEHOME/bashrc/bashrc
+fi
+if [ -f $MHALEHOME/bashrc/bashrc.nvidia ] ; then
+  source $MHALEHOME/bashrc/bashrc.nvidia
 fi
 export HISTSIZE=50000
 export HISTFILESIZE=50000
@@ -33,11 +36,16 @@ if [[ $OSNAME == "Linux" ]] || [[ $OSNAME == "SunOS" ]] ; then
              eval `/pkg/ice/sysadmin/lsf/bin/lsfconf | grep LSF_MANDIR`
              pathappend      ${LSF_MANDIR} MANPATH
         fi
-	export QC_LSF_CLUSTER=${QC_LSF_CLUSTER:-$(lsid | grep "cluster name" | head -n 1 | awk '{printf $NF}')}
+	if [ -e "/pkg/ice/sysadmin/lsf/bin/lsid" ]; then
+		export NV_LSF_CLUSTER=${NV_LSF_CLUSTER:-$(lsid | grep "cluster name" | head -n 1 | awk '{printf $NF}')}
+	fi
 
 	# I'm specifically looking for the executable here because of enclaves
-	if [ -e /pkg/qct/software/gnu/tmux/2.3/bin/tmux ] ; then
-	  	pathprepend  /pkg/qct/software/gnu/tmux/2.3/bin/
+	if [ -e /home/utils/tmux-2.7/bin/tmux ] ; then
+	  	pathprepend  /home/utils/tmux-2.7/bin/
+		export TERM=screen-256color-it
+		#export TERMINFO=/home/utils/tmux-2.7/share/terminfo
+		export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 	fi
 	# I hate subscriptions
 	if [ -e /usr/local/etc/subscriptions/qct_clearcase/profile ] ; then
@@ -65,11 +73,8 @@ if [[ $OSNAME == "Linux" ]] || [[ $OSNAME == "SunOS" ]] ; then
 	# Last thing on the path
 	pathappend  /prj/qct/wire/bin
 	#export TERM=screen-256color-it
-	export TERM=tmux
-	export TERMINFO=/pkg/qct/software/gnu/tmux/2.3/share/terminfo
-	export TERMINFO_DIRS=/pkg/qct/software/gnu/tmux/2.3/share/terminfo:~/.terminfo:
-	export LSF_JOB_TAG=`/pkg/icetools/bin/ptagger -f 51111 -t 00 -g ect`."wire"
-	export DRM_PROJECT=$LSF_JOB_TAG
+	#export LSF_JOB_TAG=`/pkg/icetools/bin/ptagger -f 51111 -t 00 -g ect`."wire"
+	#export DRM_PROJECT=$LSF_JOB_TAG
 	#export PROMPT_COMMAND='echo -ne "\033$(hostname -s)\033"'
 	# Having . in the PATH is dangerous
 	#if [ $EUID -gt 99 ]; then
@@ -97,7 +102,7 @@ if [[ $OSNAME == "Darwin" ]]; then
 fi 
 #  GLOBAL
 #export PS1="\n\[$(tput setaf 2)\]\D{%F %T} $(__git_ps1)\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
-export PS1="\n\[$(tput setaf 2)\]\D{%F %T} \$QC_LSF_CLUSTER \[\$(__git_ps1)\]\n\[$(tput sgr0)\]\[$(tput setaf 7)\]\w\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
+export PS1="\n\[$(tput setaf 2)\]\D{%F %T} \$NV_LSF_CLUSTER \[\$(__git_ps1)\]\n\[$(tput sgr0)\]\[$(tput setaf 7)\]\w\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 # Common additions
 unset PROMPT_COMMAND
 pathprepend $MHALEHOME/bin
