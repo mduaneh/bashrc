@@ -1,0 +1,59 @@
+
+# Tools
+pathset /home/tools/admin/license_files LM_LICENSE_FILE
+pathset "$(/home/nv/bin/build_lic_list.pl /home/tools/admin/license_files/*synopsys*)" SNPSLMD_LICENSE_FILE
+pathset "$(/home/nv/bin/build_lic_list.pl /home/tools/admin/license_files/*cadence*)"  CDS_LIC_FILE
+pathset true CDS_LIC_ONLY
+
+pathset .p4config P4CONFIG 
+pathset ${USER}   P4CLIENT
+#pathset p4sw:2006 P4PORT
+pathset p4hw:2001 P4PORT
+pathset /home/utils/mgdiff-1.0-2/bin/mgdiff P4DIFF
+alias p4='p4 -d `/bin/pwd`'
+
+
+# Setup Path like John Oilar
+pathappend /home/nv/utils/quasar/bin
+pathappend /home/nv/utils/Assay/1.26.3/bin
+utils="/home/utils"
+# Update these to change versions
+git_version="2.18.0"
+perl_version="5.26-latest"
+python3_version="Python-3.6.1"
+# Intermediate path variables - should not need to change on version change
+git_path="${utils}/git-$git_version"
+perl_path="${utils}/perl5/perlbrew/perls/$perl_version"
+python3_path="${utils}/$python3_version"
+# Actual path variables
+# For some reason man pages for git are not built in every release
+pathappend $git_path/bin
+pathappend $perl_path/bin
+pathappend $python3_path/bin
+
+pathappend ~/bin
+pathappend /home/nv/utils/crucible/1.0/bin
+pathappend /home/utils/bin
+pathappend /bin
+pathappend /home/gnu/bin
+pathappend /usr/bin
+pathappend /sbin
+pathappend /usr/sbin
+pathappend /usr/ucb
+pathappend /usr/ccs/bin
+pathappend /usr/lib
+pathappend /etc
+pathappend /home/nv/bin
+pathappend /usr/bin/X11
+# Setup LSF
+pathset /usr/local/lsf/etc LSF_SERVERDIR
+pathappend /usr/local/lsf/bin 
+pathappend /usr/local/lsf/man MANPATH
+
+pathappend /home/tools/td/td5303/linux/bin
+pathappend /home/tools/synopsys/syn_2017.09-SP4/bin
+pathappend /home/tools/synopsys/pt_2017.12-SP2/bin
+pathappend /home/tools/synopsys/fm_2017.09-SP4/bin
+pathappend /home/tools/verilint/2001.4.10-linux2.2
+pathappend /home/tools/debussy/Novas_201207/bin
+pathappend /home/tools/verplex/lec.17.20-s140/bin
