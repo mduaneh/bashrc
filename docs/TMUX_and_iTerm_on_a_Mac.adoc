@@ -5,6 +5,7 @@ Michael D. Hale
 :tmuxBinDir: {tmuxDir}/bin
 :tmux: {tmuxBinDir}/tmux
 :TERM: screen256-color
+
 == Prerequisites
 
 * Ability to ssh from your desktop to your destination host
