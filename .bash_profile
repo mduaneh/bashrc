@@ -29,17 +29,6 @@ export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 if [[ $OSNAME == "Linux" ]] || [[ $OSNAME == "SunOS" ]] ; then
 	debug "Running $OSNAME Setup"
-	pathprepend /pkg/qct/software/lsf
-	pathprepend /pkg/ice/sysadmin/lsf/bin
-	# This allows the LSF man pages to get added 
-        if [ -e "/pkg/ice/sysadmin/lsf/bin/lsfconf" ] && [ -e "/etc/lsf.conf" ]; then
-             eval `/pkg/ice/sysadmin/lsf/bin/lsfconf | grep LSF_MANDIR`
-             pathappend      ${LSF_MANDIR} MANPATH
-        fi
-	if [ -e "/pkg/ice/sysadmin/lsf/bin/lsid" ]; then
-		export NV_LSF_CLUSTER=${NV_LSF_CLUSTER:-$(lsid | grep "cluster name" | head -n 1 | awk '{printf $NF}')}
-	fi
-
 	# I'm specifically looking for the executable here because of enclaves
 	if [ -e /home/utils/tmux-2.7/bin/tmux ] ; then
 	  	pathprepend  /home/utils/tmux-2.7/bin/
@@ -47,39 +36,8 @@ if [[ $OSNAME == "Linux" ]] || [[ $OSNAME == "SunOS" ]] ; then
 		#export TERMINFO=/home/utils/tmux-2.7/share/terminfo
 		export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 	fi
-	# I hate subscriptions
-	if [ -e /usr/local/etc/subscriptions/qct_clearcase/profile ] ; then
-	  	source /usr/local/etc/subscriptions/qct_clearcase/profile	
-	fi
-	
-	
-	pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
-	pathprepend  /pkg/sysadmin/bin      # For things like mdbrotate
-	pathprepend  /pkg/hwtools/bin       # For things like lmstat
-	pathprepend  /opt/quest/bin         # For things like klist/kinit
-	pathprepend  /pkg/afs/bin           # For asudo
-	pathprepend  /usr/atria/bin         # For cleartool
-	pathprepend  /pkg/icetools/bin      # For stuff like quota.eng
-	pathprepend  /pkg/ice/sysadmin/bin  # For things like v2p
-	pathprepend  /pkg/sysadmin/bin      # For things like mdbrotate
-	pathprepend  /pkg/hwtools/bin       # For things like lmstat
-	pathprepend  /opt/quest/bin         # For things like klist/kinit
-	pathprepend  /pkg/afs/bin           # For asudo
-	pathprepend  /usr/atria/bin         # For cleartool
-	pathprepend  /pkg/icetools/bin      # For stuff like quota.eng
-	pathprepend  /pkg/qct/software/wire/bin      # For wire stuff
 	pathprepend $MHALEHOME/bin
 	pathprepend /usr/sbin               # For things like traceroute
-	# Last thing on the path
-	pathappend  /prj/qct/wire/bin
-	#export TERM=screen-256color-it
-	#export LSF_JOB_TAG=`/pkg/icetools/bin/ptagger -f 51111 -t 00 -g ect`."wire"
-	#export DRM_PROJECT=$LSF_JOB_TAG
-	#export PROMPT_COMMAND='echo -ne "\033$(hostname -s)\033"'
-	# Having . in the PATH is dangerous
-	#if [ $EUID -gt 99 ]; then
-	#  pathappend .
-	#fi
 fi
 if [[ $OSNAME == "Darwin" ]]; then
 	debug "Running MacOSX Setup"

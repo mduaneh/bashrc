@@ -35,7 +35,6 @@ pathappend ~/bin
 pathappend /home/nv/utils/crucible/1.0/bin
 pathappend /home/utils/bin
 pathappend /bin
-pathappend /home/gnu/bin
 pathappend /usr/bin
 pathappend /sbin
 pathappend /usr/sbin
@@ -44,6 +43,7 @@ pathappend /usr/ccs/bin
 pathappend /usr/lib
 pathappend /etc
 pathappend /home/nv/bin
+pathappend /home/gnu/bin
 pathappend /usr/bin/X11
 # Setup LSF
 pathset /usr/local/lsf/etc LSF_SERVERDIR
