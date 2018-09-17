@@ -25,7 +25,11 @@ setup: ${TARGETS}
 	${ln} -s -T -f ${PWD}/ssh-ident ~/bin/ssh
 	${ln} -s -T -f ${PWD}/ssh-ident ~/bin/scp
 	${ln} -s -T -f ${PWD}/pass ~/bin/pass
+	mkdir -p ~/.ssh/identities
+	chmod u=rwX,go= -R ~/.ssh
 	${ln} -s -T -f ${PWD}/ssh/config ~/.ssh/config
+	${ln} -s -T -f ${PWD}/ssh/ssh-ident.conf ~/.ssh-ident
+	${ln} -s -T -f ${PWD}/ssh/id_rsa* ~/.ssh/identities/work
 
 git-prompt.sh:
 	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/$@
