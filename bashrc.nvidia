@@ -9,7 +9,10 @@ pathset .p4config P4CONFIG
 pathset ${USER}   P4CLIENT
 #pathset p4sw:2006 P4PORT
 pathset p4hw:2001 P4PORT
-pathset /home/utils/mgdiff-1.0-2/bin/mgdiff P4DIFF
+# Default and Graphical pathset 
+# /home/utils/mgdiff-1.0-2/bin/mgdiff P4DIFF
+# I prefer plain text diff if possible
+pathset /usr/bin/sdiff  P4DIFF
 alias p4='p4 -d `/bin/pwd`'
 
 
@@ -57,3 +60,5 @@ pathappend /home/tools/synopsys/fm_2017.09-SP4/bin
 pathappend /home/tools/verilint/2001.4.10-linux2.2
 pathappend /home/tools/debussy/Novas_201207/bin
 pathappend /home/tools/verplex/lec.17.20-s140/bin
+# Tools in here seem to be used frequently from https://confluence.nvidia.com/display/GDT/Building+a+Tree+Track
+pathappend /home/nv/utils/hwmeth/bin
