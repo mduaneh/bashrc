@@ -93,8 +93,7 @@ if [ $OSNAME != "SunOS" ] ; then
 	   source ~/bashrc/git-prompt.sh
 	fi
 fi
-unset OSNAME
-debug  "End of ~/bashrc/bashrc"
+debug  "End of /bashrc/bashrc"
 
 # End ~/.bashrc
 

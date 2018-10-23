@@ -25,6 +25,7 @@ setup: ${TARGETS}
 	${ln} -s -T -f ${PWD}/ssh-ident ~/bin/ssh
 	${ln} -s -T -f ${PWD}/ssh-ident ~/bin/scp
 	${ln} -s -T -f ${PWD}/pass ~/bin/pass
+	${ln} -s -T -f ${PWD}/bin/tmux-cssh ~/bin/tmux-cssh
 	mkdir -p ~/.ssh/identities
 	chmod u=rwX,go= -R ~/.ssh
 	${ln} -s -T -f ${PWD}/ssh/config ~/.ssh/config

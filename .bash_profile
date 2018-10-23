@@ -1,6 +1,11 @@
 # Begin ~/.bash_profile
 #set -vx
 export DEBUG=${DEBUG:-"n"}
+debug () {
+        # If the shell is interactive then allow echos to debug.
+        # This is needed so scp will work
+        [[ $- == *i* ]] && [[ $DEBUG == *y* ]] && echo $@
+}
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
 # updated by Bruce Dubbs <bdubbs@linuxfromscratch.org>
@@ -17,11 +22,19 @@ if [[ $OSNAME == "Darwin" ]]; then
 else
 	MHALEHOME=$(readlink -f ~mhale)
 fi
+debug "MHALEHOME=$MHALEHOME"
+debug "OSNAME=$OSNAME"
+debug "Checking for bashrc"
 if [ -f $MHALEHOME/bashrc/bashrc ] ; then
+  debug "Sourcing $MHALEHOME/bashrc/bashrc"
   source $MHALEHOME/bashrc/bashrc
 fi
-if [ -f $MHALEHOME/bashrc/bashrc.nvidia ] && [[  $OSNAME == "Linux" ]] ; then
-  source $MHALEHOME/bashrc/bashrc.nvidia
+if [ -e "$MHALEHOME/bashrc/bashrc.nvidia" ] ; then
+  debug "bashrc.nvidia exists, now is this Linux: $OSNAME"
+  if [[  "$OSNAME" == "Linux" ]] ; then
+     debug "Sourcing $MHALEHOME/bashrc/bashrc.nvidia"
+     source $MHALEHOME/bashrc/bashrc.nvidia
+  fi
 fi
 export HISTSIZE=50000
 export HISTFILESIZE=50000
