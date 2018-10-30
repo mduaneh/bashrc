@@ -1,15 +1,15 @@
 # Begin ~/.bash_profile
 #set -vx
-export DEBUG=${DEBUG:-"n"}
+export mdhDEBUG=${mdhDEBUG:-"n"}
 debug () {
         # If the shell is interactive then allow echos to debug.
         # This is needed so scp will work
-        [[ $- == *i* ]] && [[ $DEBUG == *y* ]] && echo $@
+        [[ $- == *i* ]] && [[ $mdhDEBUG == *y* ]] && echo $@
 }
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
 # updated by Bruce Dubbs <bdubbs@linuxfromscratch.org>
-[[ $- == *i* ]] && [[ $DEBUG == *y* ]] && echo "Sourcing .bash_profile"
+[[ $- == *i* ]] && [[ $mdhDEBUG == *y* ]] && echo "Sourcing .bash_profile"
 
 # Personal environment variables and startup programs.
 
@@ -88,4 +88,4 @@ fi
 
 # FIX LESS espeically with git output
 export LESS="${LESS} -R"
-[[ $- == *i* ]] && [[ $DEBUG == *y* ]] && echo "End of  .bash_profile"
+debug "End of  .bash_profile"

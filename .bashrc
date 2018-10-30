@@ -4,7 +4,7 @@
 debug () {
 	# If the shell is interactive then allow echos to debug.
 	# This is needed so scp will work
-	[[ $- == *i* ]] && [[ $DEBUG == *y* ]] && echo $@
+	[[ $- == *i* ]] && [[ $mdhDEBUG == *y* ]] && echo $@
 }
 debug "Sourcing bashrc/bashrc"
 hostname=`hostname`
