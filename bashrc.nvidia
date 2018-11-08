@@ -21,6 +21,10 @@ pathset p4hw:2001 P4PORT
 # I prefer plain text diff if possible
 pathset /usr/bin/sdiff  P4DIFF
 alias p4='p4 -d `/bin/pwd`'
+alias cpu64='cd /home/scratch.inode64test_cpu_03/mhale_wfo'
+alias gpu64='cd /home/scratch.inode64test_gpu_02/mhale_wfo'
+alias mobile64='cd /home/scratch.inode64test_mobile_03/mhale_wfo'
+alias sprt='sort |uniq -c |sort -n'
 
 
 # Setup Path like John Oilar
@@ -55,7 +59,7 @@ pathappend /usr/ccs/bin
 pathappend /usr/lib
 pathappend /etc
 pathappend /home/nv/bin
-pathappend /home/gnu/bin
+pathremove /home/gnu/bin
 pathappend /usr/bin/X11
 # Setup LSF
 pathset /usr/local/lsf/etc LSF_SERVERDIR
@@ -73,4 +77,6 @@ pathappend /home/tools/verplex/lec.17.20-s140/bin
 pathappend /home/nv/utils/hwmeth/bin
 # 09/24/2018 While running the AMPSM seems NV assumes "." is in the path
 pathappend ./
+# Adding a ":" to the beginning allows the system man files to be searched in addition to anything we've added
+export MANPATH=:${MANPATH}
 debug "END: Sourcing bashrc.nvidia"
