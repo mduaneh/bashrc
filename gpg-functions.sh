@@ -3,10 +3,13 @@ export GPG_TTY=$(tty)
 function gpg_setup_env () {
 	debug "Configuring GPG Agent Environment"
 	if [ -f "${HOME}/.gpg-agent-info" ]; then
-  	. "${HOME}/.gpg-agent-info"
-  	export GPG_AGENT_INFO
-  	export SSH_AUTH_SOCK
-  	export SSH_AGENT_PID
+	  	. "${HOME}/.gpg-agent-info"
+  		export GPG_AGENT_INFO
+  		export SSH_AUTH_SOCK
+  		export SSH_AGENT_PID
+	else
+		debug "No ${HOME}/.gpg-agent-info file found"
+		return 1
 	fi
 	
 }
@@ -28,7 +31,7 @@ function gpg_start_agent () {
 	local umaskSet=`umask`
 	umask 0077
 	chmod 0700 ~/.gnupg
-	gpg-agent --daemon --enable-ssh-support           --write-env-file "${HOME}/.gpg-agent-info" &>/dev/null 
+	gpg-agent --daemon --enable-ssh-support           --write-env-file "${HOME}/.gpg-agent-info"  2> /dev/null &
 	result=$?
 	debug "Starting GPG Agent"
 	gpg_setup_env

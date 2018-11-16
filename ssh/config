@@ -22,6 +22,12 @@ StrictHostKeyChecking   no
 #  QCOM <-> AWSBastion <-> AWSInstance
 #  QCOM -> mhale-SimCloudDMZ-public -> mhale-SimCloudDMZ-private -> mhale-SimCloudCompute-compute
 
+Host gitlab-master.nvidia.com
+    Hostname gitlab-master.nvidia.com
+    IdentityFile ~/.ssh/gitlab-master/id_rsa
+    IdentitiesOnly yes 
+# see NOTES below
+
 Host AWS-LSFMaster-East-v2
 	IdentityFile ~/.ssh/iceadmin.pem
 	HostName 10.199.16.10

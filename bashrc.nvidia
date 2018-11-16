@@ -1,11 +1,4 @@
 debug "BEGIN: Sourcing bashrc.nvidia"
-# GPG Agent used for pass storage
-if tmux has-session 2> /dev/null  ;then 
-        if [ -f $HOME/bashrc/gpg-functions.sh ] ; then
-          source $HOME/bashrc/gpg-functions.sh
-          gpg_activate
-        fi
-fi
 # Tools
 pathset /home/tools/admin/license_files LM_LICENSE_FILE
 pathset "$(/home/nv/bin/build_lic_list.pl /home/tools/admin/license_files/*synopsys*)" SNPSLMD_LICENSE_FILE

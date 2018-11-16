@@ -29,6 +29,13 @@ if [ -f $MHALEHOME/bashrc/bashrc ] ; then
   debug "Sourcing $MHALEHOME/bashrc/bashrc"
   source $MHALEHOME/bashrc/bashrc
 fi
+# GPG Agent used for pass storage
+if tmux has-session 2> /dev/null  ;then
+        if [ -f $MHALEHOME/bashrc/gpg-functions.sh ] ; then
+          source $MHALEHOME/bashrc/gpg-functions.sh
+          gpg_activate
+        fi
+fi
 if [ -e "$MHALEHOME/bashrc/bashrc.nvidia" ] ; then
   debug "bashrc.nvidia exists, now is this Linux: $OSNAME"
   if [[  "$OSNAME" == "Linux" ]] ; then
