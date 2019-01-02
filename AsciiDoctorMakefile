@@ -1,0 +1,33 @@
+OUTDIR:=../out
+SOURCES:=$(wildcard *.adoc)
+BASENAME:=$(basename ${SOURCES})
+TARGETS:=$(addprefix ${OUTDIR}/,${BASENAME})
+PDFTargets:=$(addsuffix .pdf, ${TARGETS})
+HTMLTargets:=$(addsuffix .html, ${TARGETS})
+SHTMLTargets:=$(addsuffix .s.html, ${TARGETS})
+echo:
+	echo "SOURCES: ${SOURCES}"
+	echo "BASENAME: ${BASENAME}"
+	echo "TARGETS: ${TARGETS}"
+	echo "PDF   Targets: ${PDFTargets}"
+	echo "HTML  Targets: ${HTMLTargets}"
+	echo "SHTML Targets: ${SHTMLTargets}"
+
+PDF: ${PDFTargets}
+
+HTML: ${HTMLTargets}
+
+SHTML: ${SHTMLTargets}
+
+../out/%.pdf: %.adoc
+	asciidoctor-pdf -r asciidoctor-diagram -a data-uri -D ../out  -a icons -b pdf  $<
+
+
+../out/%.s.html: ./%.adoc
+	asciidoctor -r asciidoctor-diagram -a data-uri -D ../out -o $@ -a icons -b html  $<
+
+../out/%.html: ./%.adoc
+	asciidoctor -r asciidoctor-diagram  -D ../out -o $@ -a icons -b html  $<
+
+.SILENT: echo
+.PHONY: PDF HTML SHTML echo
