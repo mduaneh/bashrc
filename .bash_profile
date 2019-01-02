@@ -74,7 +74,6 @@ if [[ $OSNAME == "Darwin" ]]; then
 	pathappend "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 	pathappend  ./.
 	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
-	export HOMEBREW_GITHUB_API_TOKEN=86d1eff6f2645f2717c3b98635194b6e5e883ed0
 	# COMMENTED OUT# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 	# OLD# export PROMPT_COMMAND='echo -ne "\033]0;$(basename ${PWD}): ${PWD}\007"'
 	#export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
