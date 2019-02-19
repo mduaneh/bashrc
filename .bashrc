@@ -7,7 +7,15 @@ debug () {
 	[[ $- == *i* ]] && [[ $mdhDEBUG == *y* ]] && echo $@
 }
 debug "Sourcing bashrc/bashrc"
-hostname=`hostname`
+
+#!/bin/bash
+hostName () {
+	local fullHostName=${1:-$(hostname -f)}
+	local goodhostName=${fullHostName%%.nvidia.com}
+	echo  -n $goodhostName
+}
+
+export hostname=$(hostName)
 # Personal aliases and functions.
 
 # Personal environment variables and startup programs should go in
