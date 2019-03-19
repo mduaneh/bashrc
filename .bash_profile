@@ -73,7 +73,7 @@ if [[ $OSNAME == "Darwin" ]]; then
 	pathappend /Applications/Splunk/bin
 	pathappend "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 	pathappend  ./.
-	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+	#export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 	# COMMENTED OUT# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 	# OLD# export PROMPT_COMMAND='echo -ne "\033]0;$(basename ${PWD}): ${PWD}\007"'
 	#export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
