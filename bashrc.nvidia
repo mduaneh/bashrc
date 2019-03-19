@@ -72,4 +72,5 @@ pathappend /home/nv/utils/hwmeth/bin
 pathappend ./
 # Adding a ":" to the beginning allows the system man files to be searched in addition to anything we've added
 export MANPATH=:${MANPATH}
+export LSB_DEFAULTPROJECT=gpu_inf_hwinf_ops_wfo
 debug "END: Sourcing bashrc.nvidia"

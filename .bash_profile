@@ -59,6 +59,8 @@ if [[ $OSNAME == "Linux" ]] || [[ $OSNAME == "SunOS" ]] ; then
 	pathprepend $MHALEHOME/bin
 	pathprepend /usr/sbin               # For things like traceroute
 	export LS_COLORS=$LS_COLORS:'di=0;36:'
+	export HOSTNAME=$(hostName)
+	export HOST=$(hostName)
 fi
 if [[ $OSNAME == "Darwin" ]]; then
 	debug "Running MacOSX Setup"
@@ -80,7 +82,7 @@ if [[ $OSNAME == "Darwin" ]]; then
 fi 
 #  GLOBAL
 #export PS1="\n\[$(tput setaf 2)\]\D{%F %T} $(__git_ps1)\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}:\[$(tput setaf 7)\]\w\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
-export PS1="\n\[$(tput setaf 2)\]\D{%F %T} \$NV_LSF_CLUSTER \[\$(__git_ps1)\]\n\[$(tput sgr0)\]\[$(tput setaf 7)\]\w\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\h\[$(tput sgr0)\]\${container:+-\[$(tput setaf 2)\]$container\[$(tput sgr0)\]}\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
+export PS1="\n\[$(tput setaf 2)\]\D{%F %T} \$NV_LSF_CLUSTER \[\$(__git_ps1)\]\n\[$(tput sgr0)\]\[$(tput setaf 7)\]\w\n\[$(tput sgr0)\]\[$(tput setaf 3)\]\u\[$(tput sgr0)\]@\[$(tput setaf 1)\]\$hostname\[$(tput sgr0)\]\${LSB_DOCKER_IMAGE:+-\[$(tput setaf 2)\]$LSB_DOCKER_IMAGE\[$(tput sgr0)\]}\[$(tput sgr0)\]\[$(tput setaf 6)\]>\[$(tput sgr0)\]"
 # Common additions
 unset PROMPT_COMMAND
 pathprepend $MHALEHOME/bin

@@ -17,7 +17,7 @@ echo:
 
 setup: ${TARGETS}
 	mkdir -p ~/.terminfo/s
-	uudecode -o ~/.terminfo/s/screen-256color-it screen-256color-it.uuencode
+	#uudecode -o ~/.terminfo/s/screen-256color-it screen-256color-it.uuencode
 	mkdir -p ~/.gnupg
 	${ln} -s -T -f ${PWD}/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 	if [ -e ${PWD}/gpg-agent.${OSName}.conf ]; then ${ln} -s -T -f ${PWD}/gpg-agent.${OSName}.conf ~/.gnupg/gpg-agent.conf; fi
