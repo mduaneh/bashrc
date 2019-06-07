@@ -7,18 +7,17 @@ alias rcd='cd `pwd -P`'
 alias hist='history 50'
 alias ghist='history | grep '
 alias scp='BINARY_SSH=scp ~/bin/ssh-ident'
+alias validateYAML='python3 -c "import yaml, sys; yaml.safe_load(sys.stdin)" ' 
 
 OSNAME=${OSNAME:-`uname`}
 if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias ct='cleartool'
 	alias checkSpace='du -ch --max-depth=1 --exclude=.snapshot | sort -h -r '
-	alias checkHome='checkSpace; /pkg/icetools/bin/quota.eng -u mhale -d /usr2/mhale'
-	alias aklog='/pkg/afs/tools/aklog/aklog.sled11sp3'
 	alias cdgit='cd ~/projectPaths/mhale/git'
-	alias cdtrace='cd /prj/qct/wire_trace'
+	alias cdscr='cd /home/scratch.mhale_inf'
 	alias sudo='env TERM=screen-256color /usr/bin/sudo'
-	alias become='env TERM=screen-256color sudo su - -s /bin/bash '
-	alias becomec="env TERM=screen-256color sudo su - -s /bin/tcsh "
+	alias become='env TERM=screen-256color /usr/bin/sudo -i -u '
+#	alias becomec="env TERM=screen-256color sudo su - -s /bin/tcsh "
 	alias rE="stty erase "
 	alias bjobsnc='env LSFBINARY_NOCACHE=1 bjobs'
 	alias clean="perl -p -e 's/[^\S\x0a\x0d]//g;'"
