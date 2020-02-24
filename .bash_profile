@@ -58,6 +58,8 @@ if [[ $OSNAME == "Linux" ]] || [[ $OSNAME == "SunOS" ]] ; then
 	fi
 	pathprepend $MHALEHOME/bin
 	pathprepend /usr/sbin               # For things like traceroute
+	pathappend /home/nv/utils/farm/bin
+	pathappend /home/nv/utils/monitors/lsfmetrics/scripts
 	export LS_COLORS=$LS_COLORS:'di=0;36:'
 	export HOSTNAME=$(hostName)
 	export HOST=$(hostName)
@@ -75,7 +77,7 @@ if [[ $OSNAME == "Darwin" ]]; then
 	pathappend /Applications/Splunk/bin
 	pathappend "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 	pathappend  ./.
-	export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+	#export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 	# COMMENTED OUT# export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 	# OLD# export PROMPT_COMMAND='echo -ne "\033]0;$(basename ${PWD}): ${PWD}\007"'
 	#export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'

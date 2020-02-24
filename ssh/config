@@ -73,6 +73,9 @@ Host mhale-SimCloudCompute-c3xlarge
 	IdentityFile ~/.ssh/wire-mhale-instances.pem
 	ProxyCommand ssh  -A -tt  -W %h:%p mhale-SimCloudDMZ-private
 	
+Host mhale-mlt
+	HostName mhale-mlt.client.nvidia.com
+
 Host 174.* 172.* 10.16.* 
 	user ec2-user
 	IdentityFile ~/.ssh/wire-mhale-instances.pem
