@@ -1,8 +1,8 @@
 debug "BEGIN: Sourcing bashrc.nvidia"
 # Tools
 pathset /home/tools/admin/license_files LM_LICENSE_FILE
-pathset "$(/home/nv/bin/build_lic_list.pl /home/tools/admin/license_files/*synopsys*)" SNPSLMD_LICENSE_FILE
-pathset "$(/home/nv/bin/build_lic_list.pl /home/tools/admin/license_files/*cadence*)"  CDS_LIC_FILE
+pathset "$(/bin/timeout -s 9 5 /home/nv/bin/build_lic_list.pl /home/tools/admin/license_files/*synopsys*)" SNPSLMD_LICENSE_FILE
+pathset "$(/bin/timeout -s 9 5 /home/nv/bin/build_lic_list.pl /home/tools/admin/license_files/*cadence*)"  CDS_LIC_FILE
 pathset true CDS_LIC_ONLY
 
 pathset .p4config P4CONFIG 
