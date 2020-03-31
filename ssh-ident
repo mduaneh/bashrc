@@ -440,8 +440,8 @@ class Config(object):
       # ssh-add default options. By default, don't keep a key longer
       # than 2 hours.
       #"SSH_ADD_DEFAULT_OPTIONS": "-t 7200",
-      # MDH:  Change to 8 hours
-      "SSH_ADD_DEFAULT_OPTIONS": "-t 28800",
+      # MDH:  Change to 12  hours
+      "SSH_ADD_DEFAULT_OPTIONS": "-t 43200",
 
       # Like BatchMode in ssh, see man 5 ssh_config.
       # In BatchMode ssh-ident will not print any output and not ask for

@@ -6,7 +6,7 @@ alias perlsh='perl -d -e "42;"'
 alias rcd='cd `pwd -P`'
 alias hist='history 50'
 alias ghist='history | grep '
-alias scp='BINARY_SSH=scp ~/bin/ssh-ident'
+alias scp='BINARY_SSH=scp ~/bashrc/ssh-ident'
 
 OSNAME=${OSNAME:-`uname`}
 if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
@@ -24,7 +24,7 @@ if [ $OSNAME == "Linux" ] || [ $OSNAME == "SunOS" ] ; then
 	alias clean="perl -p -e 's/[^\S\x0a\x0d]//g;'"
 	alias pkg_aarch64='cd /afs/.localcell/cm.dev/GV2/sysname/pkg.aarch64_linux26'
  else # ELSE Probably macOS
-	alias cdgit='cd ~/Documents/GitHub'
+	alias cdgit='cd ~/Documents/OneDrive\ -\ NVIDIA\ Corporation/GitHub/'
 	alias csv2markup="perl -p -e 's/^/|/; s/,/|/g; s/$/|/; s/\|/||/g if $. == 1;'"
 	alias readelf=greadelf
 	alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;killall Finder /System/Library/CoreServices/Finder.app'

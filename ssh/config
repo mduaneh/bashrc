@@ -23,111 +23,10 @@ StrictHostKeyChecking   no
 #  QCOM -> mhale-SimCloudDMZ-public -> mhale-SimCloudDMZ-private -> mhale-SimCloudCompute-compute
 
 Host gitlab-master.nvidia.com
-    Hostname gitlab-master.nvidia.com
+    HostName gitlab-master.nvidia.com
     IdentityFile ~/.ssh/gitlab-master/id_rsa
-    IdentitiesOnly yes 
+    IdentitiesOnly yes
 # see NOTES below
-
-Host AWS-LSFMaster-East-v2
-	IdentityFile ~/.ssh/iceadmin.pem
-	HostName 10.199.16.10
-        User ec2-user
-Host AWS-Infra-East-v2
-	IdentityFile ~/.ssh/iceadmin.pem
-	HostName 172.32.12.109
-	User ec2-user
-	ProxyCommand ssh -A -tt -W %h:%p AWS-LSFMaster-East-v2
-
-Host 52.* 54.* 107.* 10.199.*
-	IdentityFile ~/.ssh/wire-mhale-instances.pem
-	User ec2-user
-Host mhale-SimCloudDMZ-public
-	HostName 54.159.31.29
-	IdentityFile ~/.ssh/wire-mhale-instances.pem
-	User ec2-user
-
-Host mhale-SimCloudDMZ-private
-	HostName 10.199.10.163
-	IdentityFile ~/.ssh/wire-mhale-instances.pem
-	ProxyCommand ssh -A -tt  -W %h:%p mhale-SimCloudDMZ-public
-	User ec2-user
-Host mhale-SimCloudCompute-SUSE
-        HostName 10.16.18.2
-	user ec2-user
-	IdentityFile ~/.ssh/wire-mhale-instances.pem
-	ProxyCommand ssh -A -tt  -W %h:%p mhale-SimCloudDMZ-private
-	
-Host mhale-SimCloudCompute-compute
-        HostName 10.16.18.2
-	user ec2-user
-	IdentityFile ~/.ssh/wire-mhale-instances.pem
-	ProxyCommand ssh -A -tt  -W %h:%p mhale-SimCloudDMZ-private
-	
-Host mhale-SimCloudCompute-c3xlarge
-        HostName 10.16.24.113
-	user ec2-user
-	IdentityFile ~/.ssh/wire-mhale-instances.pem
-	ProxyCommand ssh  -A -tt  -W %h:%p mhale-SimCloudDMZ-private
-	
-Host 174.* 172.* 10.16.* 
-	user ec2-user
-	IdentityFile ~/.ssh/wire-mhale-instances.pem
-	ProxyCommand ssh  -A -tt  -W %h:%p mhale-SimCloudDMZ-private
-Host ip-10-197-* ip-172-*
-	HostName %h.simcloudv2-us-west-02.aws.qualcomm.com
-	user ec2-user
-	IdentityFile ~/.ssh/sc-admin.pem
-
-########################################################################
-#                _
-#    ___  ___ __| | ___
-#   / _ \/ __/ _` |/ __|
-#  |  __/ (_| (_| | (__
-#   \___|\___\__,_|\___|
-#
-########################################################################
-# Use Jump->Bastion to get to hosts in ECDC:
-Host encnaa-admin1.qualcomm.com bast-encnaa
-    HostName encnaa-admin1
-    ProxyCommand ssh -tt -A -W %h:%p jumprtp1 2> /dev/null
-
-Host v*-ecdca.qualcomm.com v*-ecdca
-     ProxyCommand ssh -tt -A -W %h:%p encnaa-admin1.qualcomm.com 2> /dev/null
-# Using older ProxyCommand because jumprtp1 does not have new version of openssh
-#     ProxyJump jumprtp1,encnaa-admin1.qualcomm.com 
-
-########################################################################
-#                         _
-#   _ __   __ _ _ __   __| | __ _
-#  | '_ \ / _` | '_ \ / _` |/ _` |
-#  | |_) | (_| | | | | (_| | (_| |
-#  | .__/ \__,_|_| |_|\__,_|\__,_|
-#  |_|
-########################################################################
-# Use Jump->Bastion to get to hosts in PANDA:
-Host bast-encapa-admin1 encapa-admin1 panda-admin
-    HostName bast-encapa-admin1.qualcomm.com
-    ProxyCommand ssh -A -t -W %h:%p jumpsd1 2> /dev/null
-
-Host vl-*-panda.qualcomm.com
-    ProxyCommand ssh -A -t -W %h:%p encapa-admin1.qualcomm.com 2> /dev/null
-
-Host vl-*-panda
-    HostName %h.qualcomm.com
-
-
-########################################################################
-#         _
-#    __ _| |__   ___
-#   / _` | '_ \ / __|
-#  | (_| | |_) | (__
-#   \__, |_.__/ \___|
-#   |___/
-########################################################################
-Host bast-gbc-admin1 bast-gbc gbc-bastion
-     HostName bast-wdc-hwec-01.qualcomm.com
-     User mhale
-
 
 
 ########################################################################
@@ -151,8 +50,37 @@ Host github.com
 ########################################################################
 # defaults
 LogLevel Error
+
+Host 63.240.187.229
+	User ds.nvidia.ftp
+	PasswordAuthentication yes
+	ProxyCommand ssh -A -tt -W %h:%p mhale@fafnir.nvidia.com
 Host *
 	ForwardX11 yes
 	ForwardAgent yes
 	PermitLocalCommand yes
 	LocalCommand [ "$TERM" == 'screen'* ] && echo -ne "\033k%h\033\\"
+	Protocol 2
+Host mhale.sc.vpx.nvidia.com
+    HostName mhale.sc.vpx.nvidia.com
+    User mhale
+Host dc6Test
+    HostName dc7-sim-a09-019.nvidia.com
+    User mhale
+Host hwinf-wfo-02.nvidia.com
+    HostName hwinf-wfo-02.nvidia.com
+    User mhale
+
+Host x-octane.com
+    IdentityFile ~/.ssh/identities/x-octane/id_rsa	
+Host mhale-gpu
+   IdentityFile ~/.ssh/identities/x-octane/id_rsa	
+   ProxyCommand ssh -A -tt -W %h:%p mhale@x-octane.com
+
+Host mhale-docker
+   IdentityFile ~/.ssh/identities/x-octane/id_rsa	
+   ProxyCommand ssh -A -tt -W %h:%p mhale@x-octane.com
+
+Host nano
+   HostName team5607.local
+   User team5607
