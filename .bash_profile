@@ -58,6 +58,8 @@ if [[ $OSNAME == "Linux" ]] || [[ $OSNAME == "SunOS" ]] ; then
 	fi
 	pathprepend $MHALEHOME/bin
 	pathprepend /usr/sbin               # For things like traceroute
+	pathappend /home/nv/utils/farm/bin
+	pathappend /home/nv/utils/monitors/lsfmetrics/scripts
 	export LS_COLORS=$LS_COLORS:'di=0;36:'
 	export HOSTNAME=$(hostName)
 	export HOST=$(hostName)

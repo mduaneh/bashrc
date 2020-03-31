@@ -10,24 +10,17 @@ ForwardX11              no
 StrictHostKeyChecking   no
 # Needs OpenSSH >6.7 
 #RemoteForward /home/mhale/.gpg-agent-info /home/mhale/.gnupg/S.gpg-agent.extra
-#UserKnownHostsFile	/dev/null
-########################################################################
-#
-#    __ ___      _____
-#   / _` \ \ /\ / / __|
-#  | (_| |\ V  V /\__ \
-#   \__,_| \_/\_/ |___/
-#
-########################################################################
-#  QCOM <-> AWSBastion <-> AWSInstance
-#  QCOM -> mhale-SimCloudDMZ-public -> mhale-SimCloudDMZ-private -> mhale-SimCloudCompute-compute
+UserKnownHostsFile	/dev/null
+StrictHostKeyChecking no
+LogLevel ERROR
+Host mhale-mlt
+    Hostname mhale-mlt.client.nvidia.com
 
 Host gitlab-master.nvidia.com
     HostName gitlab-master.nvidia.com
     IdentityFile ~/.ssh/gitlab-master/id_rsa
     IdentitiesOnly yes
 # see NOTES below
-
 
 ########################################################################
 #         _ _   _           _
