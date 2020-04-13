@@ -14,7 +14,7 @@ UserKnownHostsFile	/dev/null
 StrictHostKeyChecking no
 LogLevel ERROR
 Host mhale-mlt
-    Hostname mhale-mlt.client.nvidia.com
+    HostName mhale-mlt.client.nvidia.com
 
 Host gitlab-master.nvidia.com
     HostName gitlab-master.nvidia.com
@@ -65,15 +65,35 @@ Host hwinf-wfo-02.nvidia.com
     User mhale
 
 Host x-octane.com
-    IdentityFile ~/.ssh/identities/x-octane/id_rsa	
+    IdentityFile ~/.ssh/identities/x-octane/id_rsa
 Host mhale-gpu
-   IdentityFile ~/.ssh/identities/x-octane/id_rsa	
+   IdentityFile ~/.ssh/identities/x-octane/id_rsa
    ProxyCommand ssh -A -tt -W %h:%p mhale@x-octane.com
 
 Host mhale-docker
-   IdentityFile ~/.ssh/identities/x-octane/id_rsa	
+   IdentityFile ~/.ssh/identities/x-octane/id_rsa
    ProxyCommand ssh -A -tt -W %h:%p mhale@x-octane.com
 
 Host nano
    HostName team5607.local
    User team5607
+
+Host draco-login-02.nvidia.com
+    HostName draco-login-02.nvidia.com
+    ForwardAgent yes
+    ServerAliveInterval 120
+
+##########################################################################
+#    _____ ____     ____  _   _  ___
+#   | ____/ ___|   |  _ \| \ | |/ _ \
+#   |  _|| |       | |_) |  \| | | | |
+#   | |__| |___    |  _ <| |\  | |_| |
+#   |_____\____|___|_| \_\_| \_|\___/
+#             |_____|
+##########################################################################
+
+Host *.ec-rno*
+	ProxyCommand ssh -A -tt -W %h:%p dc6-ec-bastion-01.nvidia.com
+
+Host dc6-ec-bastion-01*
+	ProxyCommand ssh -A -tt -W %h:%p dc6-ec-jumphost-01
