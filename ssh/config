@@ -92,7 +92,7 @@ Host draco-login-02.nvidia.com
 #             |_____|
 ##########################################################################
 
-Host *.ec-rno*
+Host *.ec-rno* rno-ec-sim*
 	ProxyCommand ssh -A -tt -W %h:%p dc6-ec-bastion-01.nvidia.com
 
 Host dc6-ec-bastion-01*
